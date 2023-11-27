@@ -8,3 +8,18 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+puts "creating one User - heavent@gmail.com"
+
+
+# Créer un User :
+user_test = User.new(
+  email: "heavent@gmail.com",
+  password: "password",
+  status: "student",
+  pseudo: "Heavent#1410"
+)
+
+user_test.save!
+
+puts "afficher le user"
+puts "#{User.count}"
