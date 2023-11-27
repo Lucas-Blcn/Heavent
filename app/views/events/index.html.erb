@@ -1,0 +1,11 @@
+<h1> Notre Index </h1>
+<% @events.each do |event| %>
+<div>
+  <p><%= event.title %></p>
+  <p><%= event.chapeau %></p>
+  <p><%= event.description %></p>
+  <p><%= event.start_date %></p>
+  <p><%= event.end_date %></p>
+  <p><%= event.type_of_price %></p>
+</div>
+<% end %>
