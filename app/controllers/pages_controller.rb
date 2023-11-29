@@ -3,5 +3,14 @@ class PagesController < ApplicationController
   def home
   end
 
-  def map; end
+  def map
+    @events = Event.all
+
+    @markers = @events.geocoded.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude
+      }
+    end
+  end
 end
