@@ -1,7 +1,7 @@
 // Specific CSS for your home-page
 
 .home-container {
-  background-image: url('https://images.unsplash.com/photo-1525218291292-e46d2a90f77c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHBhcmlzfGVufDB8fDB8fHww');
+  background-color: $creme;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -20,7 +20,8 @@
   h1, p {
     margin: 10px 0;
     size: 25px;
+    font-family: 'Work Sans', sans-serif;
     font-weight: bold;
-    color: white;
+    color: $black;
   }
 }
