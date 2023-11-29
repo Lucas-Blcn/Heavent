@@ -1,4 +1,33 @@
-<h1> Notre Index </h1>
+
+<div class="container">
+  <div class="row">
+    <% @events.each do |event| %>
+      <div class="col-6 col-md-6 ">
+        <div class="card mb-3 border" style="max-width: 540px;">
+          <div class="row" data-controller="favorite">
+            <div class="favorite" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" >
+              <i class="fa-solid fa-heart" ></i>
+            </div>
+              <div class="col-12 col-md-4">
+                <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c2tpfGVufDB8fDB8fHww" alt="" style="width: 100%; height: 200px; object-fit: cover;">
+              </div>
+              <div class="col-12 col-md-8">
+                <div class="card-body">
+                  <h1 class="card-title" style="height: 50px; overflow: hidden;"><%= event.title %></h1>
+                  <%# <h2 class="card-text" style="height: 100px; overflow: hidden;"><%= event.chapeau %>
+                  <% start_date = Date.parse(event.start_date) %>
+                  <% end_date = Date.parse(event.end_date) %>
+                  <h2 class="card-text"><i class="fa-regular fa-calendar"></i> <%= start_date.strftime('%d/%m') %> - <%= end_date.strftime('%d/%m') %></p>
+                  <h3 class="card-text"><%= event.type_of_price %></p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<!-- <h1> Notre Index </h1>
 <% @events.each do |event| %>
 <div class="container">
   <p><%= event.title %></p>
@@ -7,5 +36,4 @@
   <p><%= event.start_date %></p>
   <p><%= event.end_date %></p>
   <p><%= event.type_of_price %></p>
-</div>
-<% end %>
+</div> -->

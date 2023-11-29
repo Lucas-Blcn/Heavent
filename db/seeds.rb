@@ -1,17 +1,55 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 require 'faker'
+require 'net/http'
+require 'json'
+
+puts "...Destroying database"
 User.destroy_all
 Event.destroy_all
 
-puts "creating one User - heavent@gmail.com"
+puts "...Calling API Que faire A paris"
+# title, lead_text, description, date_start, date_end, date_description, cover_url, tags, address_name, address_street, lat_lon, price_type, price_detail, address_zipcode, access_link
+# URL de l'API avec les paramètres de la requête
+url = URI.parse("https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records")
+url.query = URI.encode_www_form(
+  select: 'title, url, lead_text, description, date_start, date_end, date_description, cover_url, tags, address_name, address_street, lat_lon, price_type, price_detail, address_zipcode, access_link',
+  limit: 5,
+  refine: ['tags:"Peinture"', 'tags:"Art contemporain"', 'tags:"Théâtre"', 'tags:"Expo"', 'tags:"Spectacle musical"', 'tags:"Cinéma"', 'price_type:"payant"', 'price_type:"gratuit"']
+)
+# Récupérer la réponse
+response = Net::HTTP.get_response(url)
+# La mettre au format JSON
+data = JSON.parse(response.body)
+# Stocker la réponse
+results = data['results']
+# Itérer sur les éléments contenus dans le tableau results
+results.each do |result|
+  r = Event.create!(
+    title: result["title"],
+    chapeau: result["lead_text"],
+    description: result["description"],
+    start_date: result["date_start"],
+    end_date: result["date_end"],
+    description_date: result["date_description"],
+    url_image: result["cover_url"],
+    type_of_price: result["price_type"],
+    price_details: result["price_detail"],
+    url_link: result["url"],
+    tags: result["tags"],
+    place_name: result["address_name"],
+    address: result["address_street"],
+    zip_code: result["address_zipcode"],
+    gps_coord: result["lat_lon"],
+    access: "",
+    url_to_book: result["access_link"],
+    background_image: ""
+  )
+end
+puts "End of calling API Paris ... compter les events "
+puts "#{Event.count}"
+
+puts "... Calling Bestime API, not yet done"
+
+puts "...Creating one User - heavent@gmail.com"
 
 # Créer un User :
 user_test = User.new(
@@ -20,38 +58,33 @@ user_test = User.new(
   status: "student",
   pseudo: "Heavent#1410"
 )
-
 user_test.save!
 
 puts "afficher le user"
 puts "#{User.count}"
 
 
-# Créer deux events:
-price = ["5","10","12","14","15","18","20"]
-tag = %w[arts_contemporain street_art theatre BD comédie balade cinema atelier humour peinture spectacle_musicale]
-5.times do
-  Event.create!(
-    title: Faker::Lorem.sentence,
-    chapeau: Faker::Lorem.paragraph,
-    description: Faker::Lorem.paragraphs(number: 3).join("\n\n"),
-    start_date: Faker::Time.between_dates(from: Date.today, to: Date.today + 30, period: :day),
-    end_date: Faker::Time.between_dates(from: Date.today + 7, to: Date.today + 31, period: :day),
-    description_date: "From #{:start_date} To #{:end_date}",
-    url_image: Faker::Internet.url,
-    type_of_price: ["gratuit", "payant"][rand(0..1)],
-    price_details: "De #{price[rand(0..6)]} à #{price[rand()]} ",
-    url_link: Faker::Internet.url,
-    tags: "#{tag[rand(0..11)]},#{tag[rand(0..11)]}",
-    place_name: Faker::Address.community,
-    address: "#{Faker::Address.street_address}, Paris",
-    zip_code: Faker::Number.between(from: 75000, to: 75020),
-    gps_coord: "#{Faker::Address.latitude}, #{Faker::Address.longitude}",
-    access: Faker::Lorem.sentence,
-    url_to_book: Faker::Internet.url,
-    background_image: Faker::Internet.url
-  )
-end
-
-puts "afficher les events "
-puts "#{Event.count}"
+# # Créer deux events:
+# price = ["5","10","12","14","15","18","20"]
+# tag = %w[arts_contemporain street_art theatre BD comédie balade cinema atelier humour peinture spectacle_musicale]
+# 5.times do
+#   Event.create!(
+#     title: Faker::Lorem.sentence,
+#     chapeau: Faker::Lorem.paragraph,
+#     description: Faker::Lorem.paragraphs(number: 3).join("\n\n"),
+#     start_date: Faker::Time.between_dates(from: Date.today, to: Date.today + 30, period: :day),
+#     end_date: Faker::Time.between_dates(from: Date.today + 7, to: Date.today + 31, period: :day),
+#     description_date: "From #{:start_date} To #{:end_date}",
+#     type_of_price: ["gratuit", "payant"][rand(0..1)],
+#     price_details: "De #{price[rand(0..6)]} à #{price[rand()]} ",
+#     url_link: Faker::Internet.url,
+#     tags: "#{tag[rand(0..11)]},#{tag[rand(0..11)]}",
+#     place_name: Faker::Address.community,
+#     address: "#{Faker::Address.street_address}, Paris",
+#     zip_code: Faker::Number.between(from: 75000, to: 75020),
+#     gps_coord: "#{Faker::Address.latitude}, #{Faker::Address.longitude}",
+#     access: Faker::Lorem.sentence,
+#     url_to_book: Faker::Internet.url,
+#     background_image: Faker::Internet.url
+#   )
+# end

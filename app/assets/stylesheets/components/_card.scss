@@ -1,0 +1,31 @@
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 16px ;
+  color: grey;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+.favorite {
+  position: absolute;
+  top: 5px;
+  left: 120px;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  opacity: 0.3;
+}
+
+.favorited {
+  color: red;
+  opacity: 1;
+}
+
+.border {
+  border-radius: 20px;
+}
