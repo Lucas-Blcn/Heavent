@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-
+  get :landing, to: "pages#landing"
   resources :events, only: %I[index show] do
     resources :interests, only: %I[create update]
   end

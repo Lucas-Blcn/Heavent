@@ -1,5 +1,6 @@
 
-<div class="home-container">
-  <%= image_tag "logo.png", class:"logo" %>
-  <p>All events only for you!</p>
+<div class="home-container" data-controller="typing" data-typing-text-value="All events only for you">
+  <%= image_tag "logo.svg", class:"logo" %>
+
+  <p data-typing-target="text"></p>
 </div>
