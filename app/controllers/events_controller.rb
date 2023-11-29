@@ -3,4 +3,14 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
   end
+
+  def show
+    @event = Event.find(params(:id))
+  end
+
+  private
+
+  def params_event
+    require.params(:event).permit(:title, :chapeau, :description, :background_image)
+  end
 end
