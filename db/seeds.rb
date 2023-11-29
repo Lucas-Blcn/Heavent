@@ -23,6 +23,8 @@ data = JSON.parse(response.body)
 results = data['results']
 # Itérer sur les éléments contenus dans le tableau results
 results.each do |result|
+  # to_array_tags = JSON.parse(result["tags"])
+  # p to_array_tags
   r = Event.create!(
     title: result["title"],
     chapeau: result["lead_text"],
