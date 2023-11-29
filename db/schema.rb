@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_29_115820) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_29_161941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,8 +18,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_115820) do
     t.string "title"
     t.text "chapeau"
     t.text "description"
-    t.string "start_date"
-    t.string "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.text "description_date"
     t.string "url_image"
     t.string "type_of_price"
