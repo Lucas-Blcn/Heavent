@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
+  get '/pages/map', to: 'pages#map', as: 'map'
+
   resources :events, only: %I[index show] do
     resources :interests, only: %I[create update]
   end
