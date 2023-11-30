@@ -24,11 +24,6 @@ data = JSON.parse(response.body)
 results = data['results']
 # Itérer sur les éléments contenus dans le tableau results
 results.each do |result|
-  # to_array_tags = JSON.parse(result["tags"])
-  # p to_array_tags
-
-  # tags = result["tags"].gsub("\\\"", "'")
-  # p tags
 
   r = Event.create!(
     title: result["title"],
@@ -54,6 +49,7 @@ end
 puts "End of calling API Paris ... compter les events "
 
 puts "... Calling Bestime API"
+
 Event.all.each do |event|
   venue_name = event[:place_name]
   # venue_name = event[:place_name].gsub(/[èéêë]/, 'e')
@@ -63,23 +59,40 @@ Event.all.each do |event|
 
   # urlBestTime = URI.parse("https://besttime.app/api/v1/forecasts?api_key_private=pri_baafc9f2302245cbb3c3b6bb1a98fd95&venue_name=#{venue_name}&venue_address=#{venue_address}")
 
+  affluence = {
+    day_int: nil,
+    day_text: nil,
+    analysis: []
+  }
+
   # NEW CODE
   uri = URI("https://besttime.app/api/v1/forecasts?api_key_private=pri_baafc9f2302245cbb3c3b6bb1a98fd95&venue_name=#{venue_name}&venue_address=#{venue_address}")
 
   request = Net::HTTP::Post.new(uri)
   request['Content-Type'] = 'application/json'
-  # request.body = {
-  #   # api_key_private: 'pri_baafc9f2302245cbb3c3b6bb1a98fd95',
-  #   venue_name: venue_name,
-  #   venue_address: venue_address
-  # }.to_json
 
   response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
     http.request(request)
   end
 
-  puts response.body
+  dataBesTime = JSON.parse(response.body)
+
+  if dataBesTime["status"] == "OK"
+    dataBesTime["analysis"].each do |analyse|
+      affluence[:day_int] = analyse["day_info"]["day_int"]
+      affluence[:day_text] = analyse["day_info"]["day_text"]
+      analyse["hour_analysis"].each do |hour_analysis|
+        if hour_analysis["intensity_txt"] != "Closed" && hour_analysis["intensity_txt"] != "Above average" && hour_analysis["intensity_txt"] != "High"
+          affluence[:analysis].push({ hour: hour_analysis["hour"], intensity_txt: hour_analysis["intensity_txt"] })
+        end
+      end
+        puts affluence
+    end
+  end
 end
+
+puts "Nb affluence #{affluence["analysis"].length}"
+
 
 puts "...Creating one User - heavent@gmail.com"
 
