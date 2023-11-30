@@ -1,5 +1,6 @@
 .container {
-  width: 80%;
+  width: 91%;
+  margin: 0 auto;
 }
 
 .event-image {
@@ -10,29 +11,52 @@
   margin-bottom: 20px;
 }
 
-.title-container {
+.title {
+  display: flex;
+  align-items: center;
   text-align: center;
-  padding: 15px;
+  padding: 20px 15px 15px;
   background-color: $bg-rouge;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  margin-top: 70px;
 }
 
-.description-container {
+.chapeau, .description {
   padding: 15px;
   background-color: $bg-gray;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  margin-bottom: 50px;
   > p {
     word-wrap: break-word;
   }
+}
+
+.description {
+  display: none;
+}
+
+.toggle {
+  cursor: pointer;
+  color: black;
+  border: none;
+  padding: 10px;
+  background-color: none;
+  display: flex;
+  align-items: center;
+}
+
+.show {
+  display: block;
 }
 
 .wrapper-container {
   padding: 1rem 0;
   background-color: black;
 }
-.wrapper-image{
+
+.wrapper-image {
   height: 200px;
   background-size: contain;
   background-position: center;
