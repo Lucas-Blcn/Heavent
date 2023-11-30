@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="title-container">
+    <h1><%= @event.title %></h1>
+  </div>
+</div>
+<div class="wrapper-container">
+  <div class="wrapper-image" style="background-image: url(<%= @event.background_image.present? ? @event.background_image : "https://www.ville-castres.fr/sites/default/files/thumbnails/image/internet_1100x600_actu_2.jpg" %>)">
+</div>
+
+</div>
+<div class="container">
+  <div class="description-container">
+    <p><%= @event.description %></p>
+  </div>
+</div>
