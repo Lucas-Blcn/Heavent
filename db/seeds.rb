@@ -25,6 +25,10 @@ results = data['results']
 results.each do |result|
   # to_array_tags = JSON.parse(result["tags"])
   # p to_array_tags
+
+  # tags = result["tags"].gsub("\\\"", "'")
+  # p tags
+
   r = Event.create!(
     title: result["title"],
     chapeau: result["lead_text"],
