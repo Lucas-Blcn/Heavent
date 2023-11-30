@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "pages#landing"
 
   get :landing, to: "pages#landing"
   get :form, to: "pages#form"
