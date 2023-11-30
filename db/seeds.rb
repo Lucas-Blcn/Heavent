@@ -86,7 +86,6 @@ Event.all.each do |event|
     end
     Affluence.create!(name: dataBesTime["venue_info"]["venue_name"], days: affluences, event: event)
   end
-
   puts event.affluence
 end
 puts "...Creating one User - heavent@gmail.com"
