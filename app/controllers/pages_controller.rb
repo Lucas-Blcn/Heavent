@@ -5,17 +5,19 @@ class PagesController < ApplicationController
 
   def landing
   end
-  
-  def map
-  @events = Event.all
 
-  @markers = @events.geocoded.map do |event|
-    {
-      lat: event.latitude,
-      lng: event.longitude,
-      info_window_html: render_to_string(partial: "info_window", locals: { event: }),
-      marker_html: render_to_string(partial: "marker", locals: { event: })
-    }
+  def form
   end
- 
+
+  def map
+    @events = Event.all
+    @markers = @events.geocoded.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { event: }),
+        marker_html: render_to_string(partial: "marker", locals: { event: })
+      }
+    end
+  end
 end
