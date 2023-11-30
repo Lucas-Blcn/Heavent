@@ -106,4 +106,4 @@ user_test = User.new(
 user_test.save!
 
 puts "afficher le user"
-puts "#{User.count}"
+puts User.count
