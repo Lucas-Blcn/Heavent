@@ -60,7 +60,7 @@ Event.all.each do |event|
    encoded_venue_address = URI.encode_www_form_component(venue_address)
 
    # Construction de l'URL en utilisant les composants encodés
-   url_besttime = URI.parse("https://besttime.app/api/v1/forecasts?api_key_private=pri_baafc9f2302245cbb3c3b6bb1a98fd95&venue_name=#{encoded_venue_name}&venue_address=#{encoded_venue_address}")
+   url_besttime = URI.parse("https://besttime.app/api/v1/forecasts?api_key_private=pri_baafc9f2302245cbb3c3b6bb1a98fd95&venue_name=#{venue_name}&venue_address=#{venue_address}")
    puts url_besttime
 
   # url_bestime = URI.parse("https://besttime.app/api/v1/forecasts?#{URI.encode_www_form(params)}")
