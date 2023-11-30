@@ -1,3 +1,5 @@
-<%= simple_form_for @events do |f| %>
-  <%= f.input :tags %>
+
+<%= simple_form_for :filter, url: events_path, method: :get do |f| %>
+  <%= f.input :tags, as: :check_boxes, collection: Event.all.pluck(:tags).flatten.uniq %>
+  <%= f.submit %>
 <% end %>
