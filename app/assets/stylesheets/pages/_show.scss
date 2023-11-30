@@ -1,5 +1,3 @@
-
-
 .container {
   width: 91%;
   margin: 0 auto;
@@ -17,11 +15,35 @@
   display: flex;
   align-items: center;
   text-align: center;
-  padding: 20px 15px 15px;
+  padding: 50px 15px 20px 15px;
   background-color: $bg-rouge;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  margin-top: 70px;
+  margin-top: 40px;
+  position: relative;
+}
+
+.arrow_dahlia {
+  font-size: 60px;
+  line-height: 10px;
+  font-family: "Dahlia Bold" !important;
+}
+.arrow_dahlia_left {
+  position: absolute;
+  top: 17px;
+}
+
+.toggle {
+  transform: rotate(-90deg);
+}
+
+.toggle.arrow_dahlia_up {
+  transform: rotate(+90deg);
+}
+
+.title_dahlia {
+  font-size: 50px;
+  font-family: "Dahlia Medium Condensed" !important;
 }
 
 .chapeau, .description {
@@ -29,7 +51,8 @@
   background-color: $bg-gray;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  margin-bottom: 50px;
+  border-left: 1px solid black;
+  margin-bottom: 25px;
   > p {
     word-wrap: break-word;
   }
@@ -37,17 +60,34 @@
 
 .description {
   display: none;
+  border-left: none;
 }
 
+.component-image {
+  img {
+    width: 100%;
+  }
+}
+
+
 .toggle {
+  width: fit-content;
   cursor: pointer;
   color: black;
   border: none;
   padding: 10px;
   background-color: none;
-  display: flex;
-  align-items: center;
+  position: fixed;
+  background-color: white;
+  padding: 10px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  right: 10px;
+  bottom: 100px;
+  transition: transform 0.3s;
 }
+
 
 .show {
   display: block;
