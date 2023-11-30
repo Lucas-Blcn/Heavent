@@ -1,9 +1,49 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap");
+
+@font-face {
+  font-family: "Dahlia Medium Condensed";
+  src: font-url("dahlia-mediumcondensed.otf") format("opentype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Dahlia Medium";
+  src: font-url("dahlia-medium.otf") format("opentype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Dahlia Regular Condensed";
+  src: font-url("dahlia-regularcondensed.otf") format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Dahlia Regular";
+  src: font-url("dahlia-regular.otf") format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Dahlia Bold Condensed";
+  src: font-url("dahlia-boldcondensed.otf") format("opentype");
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: "Dahlia Bold";
+  src: font-url("dahlia-bold.otf") format("opentype");
+  font-weight: bolder;
+}
 
 // Define fonts for body and headers
 $body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+$headers-font: "Dahlia Medium Condensed", "Helvetica", "sans-serif";
+
+.headers-primary {
+  font-family: $headers-font;
+}
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
