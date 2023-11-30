@@ -79,11 +79,9 @@ Event.all.each do |event|
   end
 
   puts response.body
-
 end
 
-
-  puts "...Creating one User - heavent@gmail.com"
+puts "...Creating one User - heavent@gmail.com"
 
 # Créer un User :
 user_test = User.new(
@@ -95,4 +93,4 @@ user_test = User.new(
 user_test.save!
 
 puts "afficher le user"
-puts "#{User.count}"
+puts User.count

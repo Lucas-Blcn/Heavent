@@ -9,6 +9,7 @@
     <%# <%= simple_form_for @events do |f| %>
       <%# <%= f.input :category, collection: Event::CATEGORY %>
     <%# <% end %>
+    <%# <%= render "filters" %>
     <% @events.each do |event| %>
       <div class="col-6 col-md-6 ">
         <div class="card mb-3 border" style="max-width: 540px;">
@@ -23,9 +24,7 @@
                   <div class="card-body">
                     <h1 class="card-title" style="height: 50px; overflow: hidden;"><%= event.title %></h1>
                     <%# <h2 class="card-text" style="height: 100px; overflow: hidden;"><%= event.chapeau %>
-                    <% start_date = Date.parse(event.start_date) %>
-                    <% end_date = Date.parse(event.end_date) %>
-                    <h2 class="card-text"><i class="fa-regular fa-calendar"></i> <%= start_date.strftime('%d/%m') %> - <%= end_date.strftime('%d/%m') %></h2>
+                    <h2 class="card-text"><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m') %> - <%= event.end_date.strftime('%d/%m') %></h2>
                     <h3 class="card-text"><%= event.type_of_price %></h3>
                   </div>
                 </div>
