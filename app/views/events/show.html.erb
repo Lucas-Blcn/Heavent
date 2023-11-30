@@ -1,12 +1,13 @@
 <div class="container">
     <div class="title">
-      <div class="arrow_dahlia arrow_dahlia_left"> < </div>
+      <div class="arrow_dahlia arrow_dahlia_left">
+      <%= link_to "<", events_path, class: "text-decoration-none",style:"color:#201E1E" %></div>
       <h1 class="title_dahlia"><%= @event.title %></h1>
     </div>
   </div>
 
   <div class="wrapper-container">
-    <div class="wrapper-image" style="background-image: url(<%= @event.background_image.present? ? @event.background_image : "https://www.ville-castres.fr/sites/default/files/thumbnails/image/internet_1100x600_actu_2.jpg" %>)"></div>
+    <div class="wrapper-image" style="background-image: url(<%= @event.url_image.present? ? @event.url_image : "https://www.ville-castres.fr/sites/default/files/thumbnails/image/internet_1100x600_actu_2.jpg" %>)"></div>
   </div>
 
   <div class="container">
