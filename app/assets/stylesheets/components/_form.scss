@@ -1,5 +1,40 @@
 h1 {
-  background-color: green;
   font-family: "Work Sans";
-  font-size: 24px;
+  font-weight: 200;
+  font-size: 26px;
+  text-align: center;
+  padding: 10px;
+  color: $black;
+}
+
+h2 {
+  font-family: "Dahlia Medium";
+  font-size: 40px;
+  color: $black;
+  text-align: center;
+  padding-left: 20px;
+}
+
+#card {
+  border-radius: 10px;
+  background-color: $grey;
+  padding: 10px;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#card div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  height: 80px;
+  width: 80px;
+  border-right: 1px solid $white;
+  padding-right: 20px;
 }
