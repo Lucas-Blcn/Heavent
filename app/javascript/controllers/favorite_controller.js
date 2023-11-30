@@ -12,7 +12,7 @@ export default class extends Controller {
   toggleFavorite() {
     // this.heartTarget.innerText = "fa-solid fa-heart"
     this.heartTarget.classList.toggle("favorited");
-    console.log(this.heartTarget);
+    console.log(this.heartTarget.value);
   };
 
 }
