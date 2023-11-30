@@ -12,7 +12,7 @@ puts "...Calling API Que faire A paris"
 url = URI.parse("https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records")
 url.query = URI.encode_www_form(
   select: 'title, url, lead_text, description, date_start, date_end, date_description, cover_url, tags, address_name, address_street, lat_lon, price_type, price_detail, address_zipcode, access_link',
-  limit: 5,
+  limit: 2,
   refine: ['tags:"Peinture"', 'tags:"Art contemporain"', 'tags:"Théâtre"', 'tags:"Expo"', 'tags:"Spectacle musical"', 'tags:"Cinéma"', 'price_type:"payant"', 'price_type:"gratuit"']
 )
 # Récupérer la réponse
@@ -47,11 +47,67 @@ results.each do |result|
   )
 end
 puts "End of calling API Paris ... compter les events "
-puts "#{Event.count}"
+puts "#{Event.all}"
 
-puts "... Calling Bestime API, not yet done"
+puts "... Calling Bestime API"
+Event.all.each do |event|
+  venue_name = event[:place_name]
+  # venue_name = event[:place_name].gsub(/[èéêë]/, 'e')
+  venue_address_init = event[:address]
+  # venue_address_init = event[:address].gsub(/[èéêë]/, 'e')
+  venue_address = "#{venue_address_init}, paris"
 
-puts "...Creating one User - heavent@gmail.com"
+   # Utilisation de URI.encode_www_form_component pour encoder les composants de l'URL
+   encoded_venue_name = URI.encode_www_form_component(venue_name)
+   encoded_venue_address = URI.encode_www_form_component(venue_address)
+
+   # Construction de l'URL en utilisant les composants encodés
+   url_besttime = URI.parse("https://besttime.app/api/v1/forecasts?api_key_private=pri_baafc9f2302245cbb3c3b6bb1a98fd95&venue_name=#{encoded_venue_name}&venue_address=#{encoded_venue_address}")
+   puts url_besttime
+
+  # url_bestime = URI.parse("https://besttime.app/api/v1/forecasts?#{URI.encode_www_form(params)}")
+
+  # Récupérer la réponse
+  response = Net::HTTP.get_response(url_besttime)
+  if response.is_a?(Net::HTTPSuccess)
+    data = JSON.parse(response.body)
+    puts data
+  else
+    puts "Error: #{response.code} - #{response.message}"
+  end
+
+end
+
+# Event.all.each do |event|
+#   venue_name = event[:place_name]
+#   puts "venue_name: #{venue_name}"
+
+#   venue_address_init = event[:address]
+#   venue_address = "#{venue_address_init}, paris"
+
+#   # Utilisation de Addressable::URI pour construire l'URL
+#   url_besttime = Addressable::URI.parse("https://besttime.app/api/v1/forecasts")
+#   url_besttime.query_values = {
+#     api_key_private: 'pri_baafc9f2302245cbb3c3b6bb1a98fd95',
+#     venue_name: venue_name,
+#     venue_address: venue_address
+#   }
+
+#   puts url_besttime.to_s
+
+#   # Récupérer la réponse
+#   response = Net::HTTP.get_response(url_besttime)
+#   if response.is_a?(Net::HTTPSuccess)
+#     data = JSON.parse(response.body)
+#     puts data
+#   else
+#     puts "Error: #{response.code} - #{response.message}"
+#   end
+
+# end
+
+
+  puts "...Creating one User - heavent@gmail.com"
 
 # Créer un User :
 user_test = User.new(
