@@ -14,7 +14,9 @@
 
   <body>
     <div class="bottom-bar">
-    <%= image_tag "logo.svg", class: "logo-bottom-bar"%>
+    <%= link_to events_path do %>
+      <%= image_tag "logo.svg", class: "logo-bottom-bar"%>
+    <% end %>
     </div>
     <%= render "shared/flashes" %>
     <p class="notice"><%= notice %></p>

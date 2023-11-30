@@ -1,13 +1,31 @@
 <div id="icon" class="my-nav navbar">
-<div>
-  <%= image_tag "icons/user.svg", class:"navbar-icon" %>
-</div>
 
-<div>
-  <%= image_tag "icons/map.svg", class:"navbar-icon" %>
-</div>
+  <%# <div> %>
+    <%# <%= image_tag "icons/user.svg", class:"navbar-icon" %>
+  <%# </div> %>
 
-<div>
-  <%= image_tag "icons/love.svg", class:"navbar-icon" %>
-</div>
+  <%# PERMET DE REDIRIGER VERS LOG_IN %>
+   <%= link_to new_user_session_path do %>
+    <%= image_tag "icons/user.svg", class: "navbar-icon" %>
+   <% end %>
+
+  <%# <div>
+    <%= image_tag "icons/map.svg", class:"navbar-icon" %>
+  <%# </div>  %>
+
+  <%# PERMET DE REDIRIGER VERS map %>
+    <%= link_to map_path do %>
+      <%= image_tag "icons/map.svg", class: "navbar-icon" %>
+  <% end %>
+
+
+  <%# <div> %>
+    <%# <%= image_tag "icons/love.svg", class:"navbar-icon" %>
+  <%# </div> %>
+
+  <%# PERMET DE REDIRIGER VERS Interests %>
+   <%= link_to interests_path do %>
+      <%= image_tag "icons/love.svg", class: "navbar-icon" %>
+  <% end %>
+
 </div>
