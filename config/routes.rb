@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  
+
   get :landing, to: "pages#landing"
+  get :form, to: "pages#form"
   get '/pages/map', to: 'pages#map', as: 'map'
 
   resources :events, only: %I[index show] do

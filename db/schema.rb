@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_29_161941) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_30_105042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_161941) do
     t.string "type_of_price"
     t.text "price_details"
     t.string "url_link"
-    t.string "tags"
+    t.text "tags", default: [], array: true
     t.string "place_name"
     t.string "address"
     t.string "zip_code"
