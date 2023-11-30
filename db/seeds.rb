@@ -1,6 +1,7 @@
 require 'faker'
 require 'net/http'
 require 'json'
+require 'pry-byebug'
 
 puts "...Destroying database"
 User.destroy_all
@@ -25,6 +26,10 @@ results = data['results']
 results.each do |result|
   # to_array_tags = JSON.parse(result["tags"])
   # p to_array_tags
+
+  # tags = result["tags"].gsub("\\\"", "'")
+  # p tags
+
   r = Event.create!(
     title: result["title"],
     chapeau: result["lead_text"],
@@ -47,7 +52,6 @@ results.each do |result|
   )
 end
 puts "End of calling API Paris ... compter les events "
-puts "#{Event.all}"
 
 puts "... Calling Bestime API"
 Event.all.each do |event|
@@ -57,54 +61,26 @@ Event.all.each do |event|
   # venue_address_init = event[:address].gsub(/[èéêë]/, 'e')
   venue_address = "#{venue_address_init}, paris"
 
-   # Utilisation de URI.encode_www_form_component pour encoder les composants de l'URL
-   encoded_venue_name = URI.encode_www_form_component(venue_name)
-   encoded_venue_address = URI.encode_www_form_component(venue_address)
+  # urlBestTime = URI.parse("https://besttime.app/api/v1/forecasts?api_key_private=pri_baafc9f2302245cbb3c3b6bb1a98fd95&venue_name=#{venue_name}&venue_address=#{venue_address}")
 
-   # Construction de l'URL en utilisant les composants encodés
-   url_besttime = URI.parse("https://besttime.app/api/v1/forecasts?api_key_private=pri_baafc9f2302245cbb3c3b6bb1a98fd95&venue_name=#{encoded_venue_name}&venue_address=#{encoded_venue_address}")
-   puts url_besttime
+  # NEW CODE
+  uri = URI("https://besttime.app/api/v1/forecasts?api_key_private=pri_baafc9f2302245cbb3c3b6bb1a98fd95&venue_name=#{venue_name}&venue_address=#{venue_address}")
 
-  # url_bestime = URI.parse("https://besttime.app/api/v1/forecasts?#{URI.encode_www_form(params)}")
+  request = Net::HTTP::Post.new(uri)
+  request['Content-Type'] = 'application/json'
+  # request.body = {
+  #   # api_key_private: 'pri_baafc9f2302245cbb3c3b6bb1a98fd95',
+  #   venue_name: venue_name,
+  #   venue_address: venue_address
+  # }.to_json
 
-  # Récupérer la réponse
-  response = Net::HTTP.get_response(url_besttime)
-  if response.is_a?(Net::HTTPSuccess)
-    data = JSON.parse(response.body)
-    puts data
-  else
-    puts "Error: #{response.code} - #{response.message}"
+  response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
+    http.request(request)
   end
 
+  puts response.body
+
 end
-
-# Event.all.each do |event|
-#   venue_name = event[:place_name]
-#   puts "venue_name: #{venue_name}"
-
-#   venue_address_init = event[:address]
-#   venue_address = "#{venue_address_init}, paris"
-
-#   # Utilisation de Addressable::URI pour construire l'URL
-#   url_besttime = Addressable::URI.parse("https://besttime.app/api/v1/forecasts")
-#   url_besttime.query_values = {
-#     api_key_private: 'pri_baafc9f2302245cbb3c3b6bb1a98fd95',
-#     venue_name: venue_name,
-#     venue_address: venue_address
-#   }
-
-#   puts url_besttime.to_s
-
-#   # Récupérer la réponse
-#   response = Net::HTTP.get_response(url_besttime)
-#   if response.is_a?(Net::HTTPSuccess)
-#     data = JSON.parse(response.body)
-#     puts data
-#   else
-#     puts "Error: #{response.code} - #{response.message}"
-#   end
-
-# end
 
 
   puts "...Creating one User - heavent@gmail.com"
@@ -120,29 +96,3 @@ user_test.save!
 
 puts "afficher le user"
 puts "#{User.count}"
-
-
-# # Créer deux events:
-# price = ["5","10","12","14","15","18","20"]
-# tag = %w[arts_contemporain street_art theatre BD comédie balade cinema atelier humour peinture spectacle_musicale]
-# 5.times do
-#   Event.create!(
-#     title: Faker::Lorem.sentence,
-#     chapeau: Faker::Lorem.paragraph,
-#     description: Faker::Lorem.paragraphs(number: 3).join("\n\n"),
-#     start_date: Faker::Time.between_dates(from: Date.today, to: Date.today + 30, period: :day),
-#     end_date: Faker::Time.between_dates(from: Date.today + 7, to: Date.today + 31, period: :day),
-#     description_date: "From #{:start_date} To #{:end_date}",
-#     type_of_price: ["gratuit", "payant"][rand(0..1)],
-#     price_details: "De #{price[rand(0..6)]} à #{price[rand()]} ",
-#     url_link: Faker::Internet.url,
-#     tags: "#{tag[rand(0..11)]},#{tag[rand(0..11)]}",
-#     place_name: Faker::Address.community,
-#     address: "#{Faker::Address.street_address}, Paris",
-#     zip_code: Faker::Number.between(from: 75000, to: 75020),
-#     gps_coord: "#{Faker::Address.latitude}, #{Faker::Address.longitude}",
-#     access: Faker::Lorem.sentence,
-#     url_to_book: Faker::Internet.url,
-#     background_image: Faker::Internet.url
-#   )
-# end
