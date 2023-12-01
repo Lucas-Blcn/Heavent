@@ -3,17 +3,10 @@ class EventsController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index, :show ]
   def index
     if params[:filter]
-      # itére sur les params que je recois
-      # pour chacun des tags
-      # si event.category include le tag alors je le sélectionne
-      # après le each je viens .uniq sur mon array
-      # ton nouveau @events
-      # @events = Event.where()
       @events = filter
     else
       @events = Event.all
     end
-    # @category = ["Peinture", "Art contemporain", "Théâtre"]
   end
 
   def show
