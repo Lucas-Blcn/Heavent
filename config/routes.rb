@@ -9,8 +9,12 @@ Rails.application.routes.draw do
   resources :events, only: %I[index show] do
     resources :interests, only: %I[create update]
   end
-  #  Pas certain du destroy en dessous car je peux "supprimer" un intérêt en appuyant dessus -> change le statut en false
-  resources :interests, only: %I[index destroy]
+  resources :interests, only: %I[index destroy] do
+    member do
+      get '/favorite', to: "interests#favorite"
+    end
+  end
+
   resources :reviews, only: %I[destroy]
   resources :interests, only: %I[index] do
     resources :reviews, only: %I[create update]
