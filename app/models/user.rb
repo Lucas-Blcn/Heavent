@@ -15,4 +15,9 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def has_favorited?(event)
+    # On appel la méthode sur le current user
+    self.interests.find_by(event: event).present?
+  end
 end

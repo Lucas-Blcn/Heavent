@@ -5,14 +5,18 @@ export default class extends Controller {
 
   connect() {
 
-    console.log("hello")
-
   }
+  async toggleFavorite(evt) {
+    const eventId = evt.currentTarget.dataset.eventId
+    const response = await fetch(`/interests/${eventId}/favorite`);
+    const data = await response.json();
 
-  toggleFavorite() {
-    // this.heartTarget.innerText = "fa-solid fa-heart"
-    this.heartTarget.classList.toggle("favorited");
-    console.log(this.heartTarget.value);
+    if (data.favorite) {
+      // red heart
+      this.heartTarget.classList.add("favorited");
+    } else {
+      // empty heart
+      this.heartTarget.classList.remove("favorited");
+    }
   };
-
 }
