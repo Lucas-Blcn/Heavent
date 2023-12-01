@@ -14,12 +14,12 @@
       <div class="col-6 col-md-6 ">
         <div class="card mb-3 border" style="max-width: 540px;">
           <div class="row" data-controller="favorite">
-            <div class="favorite" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" >
+            <div class="favorite" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-event-id="<%= event.id %>" >
               <i class="fa-solid fa-heart" ></i>
             </div>
               <%= link_to event_path(event.id), class:"text-decoration-none" do %>
                 <div class="col-12 col-md-4">
-                  <img src="https://images.unsplash.com/photo-1513038630932-13873b1a7f29?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" style="width: 100%; height: 150px; object-fit: cover;" class="border-image">
+                  <img src="<%=event.url_image%>" alt="" style="width: 100%; height: 150px; object-fit: cover;" class="border-image">
                 </div>
               <% end %>
                 <div class="col-12 col-md-8">
