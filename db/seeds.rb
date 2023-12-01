@@ -5,6 +5,7 @@ require 'pry-byebug'
 
 puts "...Destroying database"
 User.destroy_all
+Interest.destroy_all
 Event.destroy_all
 
 puts "...Calling API Que faire A paris"
@@ -38,7 +39,7 @@ results.each do |result|
     url_link: result["url"],
     tags: result["tags"],
     place_name: result["address_name"],
-    address: result["address_street"],
+    address: "#{result["address_street"]}, paris",
     zip_code: result["address_zipcode"],
     gps_coord: result["lat_lon"],
     access: "",
@@ -53,7 +54,8 @@ puts "... Calling Bestime API"
 Event.all.each do |event|
   venue_name = URI.encode_www_form_component(event[:place_name])
   venue_address_init = event[:address]
-  venue_address = URI.encode_www_form_component("#{venue_address_init}, paris")
+  # venue_address = URI.encode_www_form_component("#{venue_address_init}, paris")
+  venue_address = URI.encode_www_form_component(venue_address_init)
 
   affluences = []
 
