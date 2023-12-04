@@ -10,7 +10,6 @@ class EventsController < ApplicationController
     else
       @events = Event.all
     end
-    
 
     respond_to do |format|
       format.html
@@ -21,10 +20,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
   end
-
-  # def filter_in_view
-  #   @events = filter
-  # end
 
   private
 
