@@ -12,7 +12,7 @@ Event.destroy_all
 puts "...Calling API Que faire A paris"
 # title, lead_text, description, date_start, date_end, date_description, cover_url, tags, address_name, address_street, lat_lon, price_type, price_detail, address_zipcode, access_link
 # URL de l'API avec les paramètres de la requête
-today_date = Date.today.to_s
+today_date = Date.today.strftime("%Y/%m/%d")
 
 url = URI.parse("https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records")
 url.query = URI.encode_www_form(
