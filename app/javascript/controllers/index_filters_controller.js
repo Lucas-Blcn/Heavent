@@ -2,23 +2,24 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="index-filters"
 export default class extends Controller {
-  static targets = ["card", "form", "input", "results"];
+  static targets = ["card", "form", "input", "results", "priceInput"];
 
-  connect() {
-    console.log("Hello");
-    const tags = this.data.get("tags");
-    console.log(tags);
-  }
+  connect() {}
 
   toggle() {
     const filters = [];
+    let freeFilter = false;
     this.inputTargets.forEach((x) => {
       if (x.checked === true) {
         filters.push(x.value);
       }
     });
 
-    const url = `${this.formTarget.action}?query=${filters}`;
+    if (this.priceInputTarget.checked === true) {
+      freeFilter = true;
+    }
+    console.log(freeFilter);
+    const url = `${this.formTarget.action}?query=${filters}&free=${freeFilter}`;
 
     fetch(url, {
       method: "GET",
@@ -30,6 +31,5 @@ export default class extends Controller {
       .then((data) => {
         this.resultsTarget.innerHTML = data;
       });
-
   }
 }
