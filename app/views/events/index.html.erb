@@ -9,6 +9,7 @@
 
     <%= render "filters" %>
 
+
   <div class="list-group">
     <% @events.each do |event| %>
       <%= link_to event_path(event.id), class: "decoration-none list-group-item px-0 pt-0 list-group-item-action mt-3" do %>
@@ -49,5 +50,6 @@
             
             
           </div>
+
   </div>
 </div>
