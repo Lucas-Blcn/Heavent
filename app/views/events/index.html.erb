@@ -8,7 +8,7 @@
   <div class="row">
 
     <%= render "filters" %>
-    
+
   <div class="list-group" style="border-left: 1px solid black">
     <% @events.each do |event| %>
       <%= link_to event_path(event.id), class: "coration-none list-group-item px-0 pt-0 list-group-item-action bg-$bg-rouge" do %>

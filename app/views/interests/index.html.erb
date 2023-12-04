@@ -16,7 +16,7 @@
         <div class="card mb-3 border" style="max-width: 540px;">
           <div class="row" data-controller="favorite">
             <div class="favorite" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-id="<%event.id%>" >
-              <i class="fa-solid fa-heart" ></i>
+              <i class="fa-solid fa-heart favorited" ></i>
             </div>
               <%= link_to event_path(event.id), class:"text-decoration-none" do %>
                 <div class="col-12 col-md-4">

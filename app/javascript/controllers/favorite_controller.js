@@ -13,10 +13,10 @@ export default class extends Controller {
 
     if (data.favorite) {
       // red heart
-      this.heartTarget.classList.add("favorited");
+      this.heartTarget.classList.add('favorited');
     } else {
       // empty heart
-      this.heartTarget.classList.remove("favorited");
+      this.heartTarget.classList.remove('favorited');
     }
   };
 }
