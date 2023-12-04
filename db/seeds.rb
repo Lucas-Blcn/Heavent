@@ -21,6 +21,7 @@ url.query = URI.encode_www_form(
   limit: 10,
   refine: ['address_city:"Paris"', 'tags:"Peinture"', 'tags:"Art contemporain"', 'tags:"Théâtre"', 'tags:"Expo"', 'tags:"Spectacle musical"', 'tags:"Cinéma"', 'price_type:"payant"', 'price_type:"gratuit"']
 )
+
 # Récupérer la réponse
 response = Net::HTTP.get_response(url)
 # La mettre au format JSON
