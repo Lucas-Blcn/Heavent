@@ -7,15 +7,19 @@ export default class extends Controller {
   connect() {
     this.i = 0
     this.speed = 50;
-    this.typing();
-  }
+    // var that = this;
+    // this.typing();
+    setTimeout(this.typing.bind(this), 10000);
+
+  };
 
   typing() {
+    console.log(this.Textvalue);
     if (this.i < this.textValue.length) {
       this.textTarget.innerHTML += this.textValue.charAt(this.i);
       this.i++;
 
       setTimeout(this.typing.bind(this), this.speed);
     }
-  }
+  };
 }

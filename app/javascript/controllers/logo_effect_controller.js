@@ -7,7 +7,7 @@ export default class extends Controller {
     // points.forEach(point => {
     //   point.classList.remove("d-none")
     // });
-    const shuffledPoints = points.sort((a, b) => 0.5 - Math.random());
+    const shuffledPoints = points.sort((a, b) => 0.2 - Math.random());
     shuffledPoints.forEach(point => {
       const index = shuffledPoints.indexOf(point)
       const delays = [4,6,8,10];
