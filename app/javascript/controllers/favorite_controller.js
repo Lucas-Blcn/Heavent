@@ -7,16 +7,17 @@ export default class extends Controller {
 
   }
   async toggleFavorite(evt) {
+    evt.preventDefault();
     const eventId = evt.currentTarget.dataset.eventId
     const response = await fetch(`/interests/${eventId}/favorite`);
     const data = await response.json();
 
     if (data.favorite) {
       // red heart
-      this.heartTarget.classList.add("favorited");
+      this.heartTarget.classList.add('favorited');
     } else {
       // empty heart
-      this.heartTarget.classList.remove("favorited");
+      this.heartTarget.classList.remove('favorited');
     }
   };
 }

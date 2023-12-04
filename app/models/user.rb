@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   # 1:N
-  has_many :interests
+  has_many :interests, dependent: :destroy
   has_many :events, through: :interests
   has_many :reviews, through: :interests
 

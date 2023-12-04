@@ -2,18 +2,19 @@ class EventsController < ApplicationController
   # Je visualise tous les évènements
   # skip_before_action :authenticate_user!, only: [:index, :show ]
   def index
-    if params[:filter]
-      # itére sur les params que je recois
-      # pour chacun des tags
-      # si event.category include le tag alors je le sélectionne
-      # après le each je viens .uniq sur mon array
-      # ton nouveau @events
-      # @events = Event.where()
-      @events = filter
+    if params[:query]
+      filters = params[:query].split(",")
+      @events = Event.all.select do |event|
+        event.tags.any? { |x| filters.include?(x) }
+      end.uniq
     else
       @events = Event.all
     end
-    # @category = ["Peinture", "Art contemporain", "Théâtre"]
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "events/list", locals: { events: @events }, formats: [:html] }
+    end
   end
 
   def show
@@ -23,13 +24,6 @@ class EventsController < ApplicationController
   private
 
   def filter
-    filtered_events = []
-    params[:filter][:tags].each do |category|
-      Event.all.each do |event|
-        filtered_events << event if event.tags.include?(category)
-      end
-    end
-    filtered_events.uniq
   end
 
   def params_event

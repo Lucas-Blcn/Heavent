@@ -13,16 +13,20 @@
   </head>
 
   <body>
-    <div class="bottom-bar">
-    <%= link_to events_path do %>
-      <%= image_tag "logo.svg", class: "logo-bottom-bar"%>
+    <% unless action_name == "landing" %>
+      <div class="bottom-bar">
+        <%= link_to events_path do %>
+          <%= image_tag "logo.svg", class: "logo-bottom-bar"%>
+        <% end %>
+      </div>
     <% end %>
-    </div>
+
     <%= render "shared/flashes" %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-    <% unless action_name == "home" %>
+
+    <% unless action_name == "landing" %>
     <%= render "shared/navbar" %>
     <% end %>
   </body>
