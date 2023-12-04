@@ -18,7 +18,6 @@ export default class extends Controller {
     if (this.priceInputTarget.checked === true) {
       freeFilter = true;
     }
-    console.log(freeFilter);
     const url = `${this.formTarget.action}?query=${filters}&free=${freeFilter}`;
 
     fetch(url, {
