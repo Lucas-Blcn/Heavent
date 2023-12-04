@@ -1,7 +1,7 @@
 <div data-liked="<%= @events_liked.include?(event) %>" class="badge rounded-pill fs-6">
   <% if @events_liked.include?(event)%>
-    <i class="fa-solid fa-heart favorited"></i>
+    <%= image_tag "markers/marker-liked.svg", height: 60, width: 60, alt: "marker liked" %>
   <% else %>
-    <%= image_tag "logo.svg", height: 40, width: 40, opacity: 1, alt: "Logo_Heavent" %>
+    <%= image_tag "markers/marker-any.svg", height: 40, width: 40, alt: "marker" %>
   <% end %>
 </div>
