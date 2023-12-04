@@ -12,12 +12,12 @@ Event.destroy_all
 puts "...Calling API Que faire A paris"
 # title, lead_text, description, date_start, date_end, date_description, cover_url, tags, address_name, address_street, lat_lon, price_type, price_detail, address_zipcode, access_link
 # URL de l'API avec les paramètres de la requête
-today_date = Date.today.to_s
+today_date = Date.today.strftime("%Y/%m/%d")
 
 url = URI.parse("https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records")
 url.query = URI.encode_www_form(
   select: 'title, url, lead_text, description, date_start, date_end, date_description, cover_url, tags, address_name, address_street, lat_lon, price_type, price_detail, address_zipcode, access_link',
-  where: "date_start <= \"#{today_date}\" AND date_end >\"2023/12/04\"",
+  where: "date_start <= \"#{today_date}\"AND date_end >\"#{today_date}\"",
   limit: 10,
   refine: ['address_city:"Paris"', 'tags:"Peinture"', 'tags:"Art contemporain"', 'tags:"Théâtre"', 'tags:"Expo"', 'tags:"Spectacle musical"', 'tags:"Cinéma"', 'price_type:"payant"', 'price_type:"gratuit"']
 )
@@ -63,8 +63,7 @@ Event.all.each do |event|
 
   affluences = []
 
-  uri = URI("https://besttime.app/api/v1/forecasts?api_key_private=pri_baafc9f2302245cbb3c3b6bb1a98fd95&venue_name=#{venue_name}&venue_address=#{venue_address}")
-  puts uri
+  uri = URI("https://besttime.app/api/v1/forecasts?api_key_private=pri_b011d20c8c334376bc09142cb6c20f91&venue_name=#{venue_name}&venue_address=#{venue_address}")
   request = Net::HTTP::Post.new(uri)
   request['Content-Type'] = 'application/json'
 
@@ -89,6 +88,7 @@ Event.all.each do |event|
         end
       end
       affluences << affluence
+      puts affluences
     end
     Affluence.create!(name: dataBesTime["venue_info"]["venue_name"], days: affluences, event: event)
   end
@@ -105,5 +105,6 @@ user_test = User.new(
 )
 user_test.save!
 
-puts "afficher le user"
-puts User.count
+puts "Nb User: #{User.count}"
+puts "Nb Event: #{Event.count}"
+puts "Nb Affluence: #{Affluence.count}"
