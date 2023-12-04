@@ -1,26 +1,20 @@
-<%= simple_form_for :filter, url: events_path, method: :get do |f| %>
+<%= simple_form_for :filter, url: events_path, method: :get, data: { index_filters_target: "form" } do |f| %>
   <div class="filter-form mb-3" >
 
     <%= f.input :tags,
       as: :check_boxes,
       collection: Event.all.pluck(:tags).flatten.uniq,
-      input_html: { class: "tag-selector" },
+      input_html: { class: "tag-selector", data: { action: "click->index-filters#toggle" } },
                   item_wrapper_class: 'tag-item'
     %>
 
     <%= f.input :type_of_price,
       as: :check_boxes,
-      collection: ["payant", "gratuit"],
+      collection: ["gratuit"],
       input_html: { class: "tag-selector" },
                   item_wrapper_class: 'tag-item'
     %>
 
-    <%= f.input :zip_code,
-      as: :check_boxes,
-      collection: Event.all.pluck(:zip_code).uniq,
-      input_html: { class: "tag-selector" },
-                  item_wrapper_class: 'tag-item'
-    %>
 
   </div>
   <%= f.submit %>
