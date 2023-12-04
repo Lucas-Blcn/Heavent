@@ -25,7 +25,7 @@
                 <div class="separateur"></div>
                 <div style="padding:20px">
                   <p class="card-text" style="font-size:20px"><%= event.place_name %></p>
-                  <p class="card-text" ><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m') %> - <%= event.end_date.strftime('%d/%m') %></p>
+                  <p class="card-text" ><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m/%y') %> - <%= event.end_date.strftime('%d/%m/%y') %></p>
                   <p class="card-text" style="font-size:20px"><%= event.type_of_price %></p>
                   <div class="d-flex">
                     <% event.tags.each do |tag| %>
