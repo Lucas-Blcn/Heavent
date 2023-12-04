@@ -2,9 +2,12 @@ class EventsController < ApplicationController
   # Je visualise tous les évènements
   # skip_before_action :authenticate_user!, only: [:index, :show ]
   def index
+    @empty = false
     @events = Event.all
     @events = @events.where(type_of_price: "gratuit") if params[:free] == "true"
-    @events = filter if params[:query]
+    # raise if params[:free] == "true"
+
+    @events = filter if params[:query] && params[:query] != ""
     # if params[:query] && params[:free] == "false"
     #   filter
     # elsif params[:free] == "true"
@@ -12,7 +15,7 @@ class EventsController < ApplicationController
     # else
     #   @events = Event.all
     # end
-
+    @empty = true if params[:free] == "true" && @events == []
     @events = Event.all if @events == []
     respond_to do |format|
       format.html
@@ -29,7 +32,7 @@ class EventsController < ApplicationController
   def filter
     filters = params[:query].split(",")
     @events = @events.select do |event|
-      event.tags.any? { |x| filters.include?(x) }
+      event.tags.any? { |tag| filters.include?(tag) }
     end.uniq
   end
 
