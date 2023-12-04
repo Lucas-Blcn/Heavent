@@ -1,12 +1,10 @@
-
-
 <div class="list-group">
-      <% @events.each do |event| %>
-        <%= link_to event_path(event.id), class: "decoration-none list-group-item px-0 pt-0 list-group-item-action mt-3", data: { index_filters_target: "card" } do %>
-          <div class="row" data-controller="favorite">
-            <div class="col-12 col-md-4" style="border-color: red">
-              <img src="<%= event.url_image %>" alt="" style="width: 100%; height: 150px; object-fit: cover; border-top: 2px solid black; border-left: 2px solid black" class="border-image">
-            </div>
+  <% @events.each do |event| %>
+    <%= link_to event_path(event.id), class: "decoration-none list-group-item px-0 pt-0 list-group-item-action mt-3", data: { index_filters_target: "card" } do %>
+      <div class="row" data-controller="favorite">
+        <div class="col-12 col-md-4" style="border-color: red">
+          <img src="<%= event.url_image %>" alt="" style="width: 100%; height: 150px; object-fit: cover; border-top: 2px solid black; border-left: 2px solid black" class="border-image">
+        </div>
 
             <div class="col-12 col-md-8">
               <div class="card-body background" style="border-left: 2px solid black">
@@ -36,6 +34,8 @@
               </div>
             </div>
           </div>
-        <% end %>
-      <% end %>
-    </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
