@@ -7,6 +7,7 @@ class EventsController < ApplicationController
       @events = Event.all.select do |event|
         event.tags.any? { |x| filters.include?(x) }
       end.uniq
+      @events = Event.all if @events == []
     else
       @events = Event.all
     end
