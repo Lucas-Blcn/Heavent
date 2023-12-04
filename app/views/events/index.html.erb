@@ -14,10 +14,10 @@
       <%= link_to event_path(event.id), class: "coration-none list-group-item px-0 pt-0 list-group-item-action bg-$bg-rouge" do %>
         <div class="row" data-controller="favorite" style="border-top: 1px solid black; marigin: 20px">
           <div class="favorite" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-event-id="<%=event.id%>" >
-          <% if current_user.interests.find_by(event: event).present? %>
-            <i class="fa-solid fa-heart favorited"></i>
-          <% else %>
-            <i class="fa-solid fa-heart"></i>
+          <% if user_signed_in? && current_user.interests.find_by(event: event).present? %>
+              <i class="fa-solid fa-heart favorited"></i>
+            <% else %>
+              <i class="fa-solid fa-heart"></i>
           <% end %>
           </div>
 
