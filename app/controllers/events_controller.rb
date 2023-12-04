@@ -10,6 +10,7 @@ class EventsController < ApplicationController
     else
       @events = Event.all
     end
+    
 
     respond_to do |format|
       format.html
