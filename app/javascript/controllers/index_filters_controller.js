@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="index-filters"
 export default class extends Controller {
-  static targets = ["card", "form"];
+  static targets = ["card", "form", "input", "results"];
 
   connect() {
     console.log("Hello");
@@ -10,28 +10,26 @@ export default class extends Controller {
     console.log(tags);
   }
 
-  toggle(ev) {
-    console.log("coucou");
-    ev.preventDefault();
-    console.log(this.formTarget);
-    // const filter = new URLSearchParams({
-    //   tags:,
-    //   type_of_price:
-    // })
+  toggle() {
+    const filters = [];
+    this.inputTargets.forEach((x) => {
+      if (x.checked === true) {
+        filters.push(x.value);
+      }
+    });
 
+    const url = `${this.formTarget.action}?query=${filters}`;
 
-    fetch(this.formTarget.action, {
+    fetch(url, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
+        Accept: "text/plain",
       },
-      body: new FormData(this.formTarget),
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
-        console.log(data);
+        this.resultsTarget.innerHTML = data;
       });
-    // this.cardTarget.classList.add("d-none");
-    // const tags = this.data.get("tags");
+
   }
 }
