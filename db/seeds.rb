@@ -2,6 +2,7 @@ require 'faker'
 require 'net/http'
 require 'json'
 require 'pry-byebug'
+require 'date'
 
 puts "...Destroying database"
 User.destroy_all
@@ -11,11 +12,14 @@ Event.destroy_all
 puts "...Calling API Que faire A paris"
 # title, lead_text, description, date_start, date_end, date_description, cover_url, tags, address_name, address_street, lat_lon, price_type, price_detail, address_zipcode, access_link
 # URL de l'API avec les paramètres de la requête
+today_date = Date.today.to_s
+
 url = URI.parse("https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que-faire-a-paris-/records")
 url.query = URI.encode_www_form(
   select: 'title, url, lead_text, description, date_start, date_end, date_description, cover_url, tags, address_name, address_street, lat_lon, price_type, price_detail, address_zipcode, access_link',
+  where: "date_start <= \"#{today_date}\" AND date_end >\"2023/12/04\"",
   limit: 10,
-  refine: ['tags:"Peinture"', 'tags:"Art contemporain"', 'tags:"Théâtre"', 'tags:"Expo"', 'tags:"Spectacle musical"', 'tags:"Cinéma"', 'price_type:"payant"', 'price_type:"gratuit"']
+  refine: ['address_city:"Paris"', 'tags:"Peinture"', 'tags:"Art contemporain"', 'tags:"Théâtre"', 'tags:"Expo"', 'tags:"Spectacle musical"', 'tags:"Cinéma"', 'price_type:"payant"', 'price_type:"gratuit"']
 )
 # Récupérer la réponse
 response = Net::HTTP.get_response(url)

@@ -1,3 +1,7 @@
-<div class="badge rounded-pill bg-primary fs-6">
-  <%= event.title %>
+<div data-liked="<%= @events_liked.include?(event) %>" class="badge rounded-pill fs-6">
+  <% if @events_liked.include?(event)%>
+    <i class="fa-solid fa-heart favorited"></i>
+  <% else %>
+    <%= image_tag "logo.svg", height: 40, width: 40, opacity: 1, alt: "Logo_Heavent" %>
+  <% end %>
 </div>
