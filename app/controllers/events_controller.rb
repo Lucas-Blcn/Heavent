@@ -17,11 +17,12 @@ class EventsController < ApplicationController
 
   def filter
     filtered_events = []
-    params[:filter][:tags].each do |category|
-      Event.all.each do |event|
-        filtered_events << event if event.tags.include?(category)
+    # Filtre sur les tags
+      params[:filter][:tags].each do |category|
+        Event.all.each do |event|
+          filtered_events << event if event.tags.include?(category)
+        end
       end
-    end
     filtered_events.uniq
   end
 

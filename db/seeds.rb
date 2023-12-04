@@ -28,21 +28,21 @@ results.each do |result|
 
   r = Event.create!(
     title: result["title"],
-    chapeau: result["lead_text"],
+    chapeau: result["lead_text"], #courte description pour donner envie d'aller à l'événement
     description: result["description"],
     start_date: result["date_start"],
     end_date: result["date_end"],
-    description_date: result["date_description"],
-    url_image: result["cover_url"],
-    type_of_price: result["price_type"],
-    price_details: result["price_detail"],
-    url_link: result["url"],
-    tags: result["tags"],
-    place_name: result["address_name"],
+    description_date: result["date_description"], # toutes les dates de l'événement
+    url_image: result["cover_url"], # image de l'événement
+    type_of_price: result["price_type"], # payant ou gratuit
+    price_details: result["price_detail"], # tarifs pratiqués si payant
+    url_link: result["url"], # url vers le site de l'événement
+    tags: result["tags"], # tags de l'événement : expo, art contemporain, theâtre ....
+    place_name: result["address_name"], # nom du lieu
     address: "#{result["address_street"]}, paris",
     zip_code: result["address_zipcode"],
     gps_coord: result["lat_lon"],
-    access: "",
+    access: result["access_type"], # obligatoire = besoin de réserver
     url_to_book: result["access_link"],
     background_image: ""
   )
