@@ -21,10 +21,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  # def filter_in_view
-  #   @events = filter
-  # end
-
   private
 
   def filter
