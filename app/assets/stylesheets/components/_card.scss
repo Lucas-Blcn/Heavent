@@ -8,18 +8,21 @@ h2 {
   font-family: 'Work Sans', sans-serif;
 }
 
+h5{
+  text-transform: uppercase;
+}
 h3 {
   font-size: 16px;
   font-family: 'Work Sans', sans-serif;
 }
 
 .favorite {
-  position: absolute;
+  // position: absolute;
   top: 5px;
   right: 10px;
   cursor: pointer;
   font-size: 24px;
-  color: white;
+  color: black;
   opacity: 0.3;
 }
 
@@ -28,11 +31,27 @@ h3 {
   opacity: 1;
 }
 
-.border {
-  border-radius: 20px;
-}
 
 .border-image {
   border-top-right-radius: none;
   border-top-left-radius: none;
+  border-top: 1px;
+}
+
+.tags {
+  border: 1px solid black;
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 3px;
+}
+
+.separateur {
+  height: 1px;
+  width: 100%;
+  background-color: black;
+}
+
+.background {
+  background-color: $creme;
 }
