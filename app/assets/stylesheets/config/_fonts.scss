@@ -45,10 +45,19 @@ $headers-font: "Dahlia Medium Condensed", "Helvetica", "sans-serif";
   font-family: $headers-font;
 }
 
+.headers-secondary {
+  font-family: $body-font;
+  text-transform: uppercase;
+  font-weight: 600;
+}
 
+.line-height-headers {
+  line-height: 2.2rem;
+}
 
-
-
+.big-size-font {
+  font-size: 30px;
+}
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
