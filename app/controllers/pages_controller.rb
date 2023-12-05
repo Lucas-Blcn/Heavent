@@ -6,9 +6,11 @@ class PagesController < ApplicationController
 
   def map
     @events = Event.all
-    interests = current_user.interests.where(liked: true)
-    @events_liked = interests.map(&:event)
-
+    if user_signed_in?
+      @user = current_user
+      interests = @user.interests.where(liked: true)
+      @events_liked = interests.map(&:event)
+    end
     @markers = @events.geocoded.map do |event|
       {
         lat: event.latitude,
