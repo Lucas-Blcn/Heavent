@@ -11,6 +11,7 @@ class PagesController < ApplicationController
       interests = @user.interests.where(liked: true)
       @events_liked = interests.map(&:event)
     end
+
     @markers = @events.geocoded.map do |event|
       {
         lat: event.latitude,

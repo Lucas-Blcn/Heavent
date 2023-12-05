@@ -62,7 +62,6 @@ Event.all.each do |event|
   venue_address = URI.encode_www_form_component(venue_address_init)
 
   affluences = []
-
   uri = URI("https://besttime.app/api/v1/forecasts?api_key_private=pri_b011d20c8c334376bc09142cb6c20f91&venue_name=#{venue_name}&venue_address=#{venue_address}")
   request = Net::HTTP::Post.new(uri)
   request['Content-Type'] = 'application/json'
@@ -87,7 +86,7 @@ Event.all.each do |event|
           affluence[:analysis].push({ hour: hour_analysis["hour"], intensity_txt: hour_analysis["intensity_txt"] })
         end
       end
-      affluences << affluence
+      affluences << affluence.to_json
       puts affluences
     end
     Affluence.create!(name: dataBesTime["venue_info"]["venue_name"], days: affluences, event: event)

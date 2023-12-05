@@ -1,17 +1,32 @@
+
 <% if @empty %>
-  <h1>Pas de résultats</h1>
+  <h1>Pas de résultats pour votre recherche. Voici nos suggestions:</h1>
 <% end %>
-
-
 
 <div class="list-group" >
   <% @events.each do |event| %>
+    <% background_affluence = %>
 
     <% if !event.affluence.nil? %>
-      <%= event.affluence.days[@today] %>
+      <% @hour %>
+      <% affluences_data_day = JSON.parse(event.affluence.days[@today]) %>
+      <% if !affluences_data_day["analysis"].find { |entry| entry['hour'] == @hour }.nil? %>
+        <% affluences_data_hour = affluences_data_day["analysis"].find { |entry| entry['hour'] == @hour } %>
+        <%affluences_data_intensity = affluences_data_hour["intensity_txt"] %>
+        <% intensity_txt = case affluences_data_intensity %>
+        <% when "Low"%>
+          <% background_affluence = 'bg-low-affluence'%>
+        <% when "Below average"%>
+          <% background_affluence = 'bg-below-average-affluence' %>
+        <% when "Average"%>
+          <% background_affluence = 'bg-average-affluence' %>
+        <% else %>
+          <% background_affluence = 'bg-no-affluence-data' %>
+        <% end %>
+      <% end %>
     <% end %>
 
-    <div data-controller="modal" class="controller" >
+    <div data-controller="modal" class="controller " >
       <div class="decoration-none list-group-item px-0 pt-0 list-group-item-action mt-3" data-index-filters-target="card" data-modal-target="card" data-action="click->modal#show" ></a>
       <%# <%= link_to event_path(event.id), class: "decoration-none list-group-item px-0 pt-0 list-group-item-action mt-3", data: { index_filters_target: "card" } do %>
         <div class="row" data-controller="favorite">
@@ -19,7 +34,7 @@
             <img src="<%= event.url_image %>" alt="" style="width: 100%; height: 150px; object-fit: cover; border-top: 2px solid black; border-left: 2px solid black" class="border-image">
           </div>
           <div class="col-12 col-md-8">
-            <div class="card-body background" style="border-left: 2px solid black">
+            <div class="<%=background_affluence%>" style="border-left: 2px solid black">
               <div class="d-flex justify-content-between" style="padding:20px">
                 <h5 class="card-title" style="height: 50px; overflow: hidden;">
                   <%= event.title %>
