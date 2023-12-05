@@ -12,7 +12,7 @@
       <% affluences_data_day = JSON.parse(event.affluence.days[@today]) %>
       <% if !affluences_data_day["analysis"].find { |entry| entry['hour'] == @hour }.nil? %>
         <% affluences_data_hour = affluences_data_day["analysis"].find { |entry| entry['hour'] == @hour } %>
-        <%affluences_data_intensity = affluences_data_hour["intensity_txt"] %>
+        <% affluences_data_intensity = affluences_data_hour["intensity_txt"] %>
         <% intensity_txt = case affluences_data_intensity %>
         <% when "Low"%>
           <% background_affluence = 'bg-low-affluence'%>
@@ -42,7 +42,7 @@
                 <%# favorite icon behavior %>
                 <div class="favorite ml-auto <%= 'favorited' if user_signed_in? && current_user.interests.find_by(event: event).present? %>" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-event-id="<%= event.id %>" >
                   <i class="fa-solid fa-heart"></i>
-              </div>
+                </div>
               </div>
               <div class="separateur"></div>
               <div style="padding:20px">
