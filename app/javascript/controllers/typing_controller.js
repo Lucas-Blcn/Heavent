@@ -9,7 +9,7 @@ export default class extends Controller {
     this.speed = 50;
     // var that = this;
     // this.typing();
-    setTimeout(this.typing.bind(this), 10000);
+    setTimeout(this.typing.bind(this), 2000);
 
   };
 
