@@ -13,11 +13,16 @@ export default class extends Controller {
     const data = await response.json();
 
     if (data.favorite) {
+      console.log("not yet fav")
       // red heart
       this.heartTarget.classList.add('favorited');
     } else {
+      console.log("already fav")
       // empty heart
       this.heartTarget.classList.remove('favorited');
+      // if (data.page === 'favorite') {
+
+      // }
     }
   };
 }

@@ -1,7 +1,11 @@
-<div data-liked="<%= @events_liked.include?(event) %>" class="badge rounded-pill fs-6">
-  <% if @events_liked.include?(event)%>
-    <%= image_tag "markers/marker-liked.svg", height: 60, width: 60, alt: "marker liked" %>
+  <% if user_signed_in? %>
+    <div data-liked="<%= @events_liked.include?(event) %>" class="badge rounded-pill fs-6">
+      <% if @events_liked.include?(event)%>
+        <%= image_tag "markers/marker-liked.svg", height: 60, width: 60, alt: "marker liked" %>
+      <% else %>
+        <%= image_tag "markers/marker-any.svg", height: 40, width: 40, alt: "marker" %>
+      <% end %>
+    </div>
   <% else %>
-    <%= image_tag "markers/marker-any.svg", height: 40, width: 40, alt: "marker" %>
-  <% end %>
-</div>
+   <%= image_tag "markers/marker-any.svg", height: 40, width: 40, alt: "marker" %>
+<% end %>

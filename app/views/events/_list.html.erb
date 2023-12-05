@@ -22,6 +22,7 @@
 
                 <%# favorite icon behavior %>
                 <div class="favorite ml-auto <%= 'favorited' if user_signed_in? && current_user.interests.find_by(event: event).present? %>" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-event-id="<%= event.id %>" >
+
                   <i class="fa-solid fa-heart"></i>
               </div>
 
