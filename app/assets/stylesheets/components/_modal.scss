@@ -1,5 +1,9 @@
 $margin-modal: 30px;
 
+.margin-modal-left {
+  margin-left: $margin-modal;
+}
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -119,6 +123,39 @@ $margin-modal: 30px;
 }
 
 .grid-component {
-  width: $margin-modal;
-  height: 100%;
+  width: $margin-modal + 2px;
+  flex-grow: 1;
+}
+
+.image-block {
+  height: fit-content;
+}
+
+.modal-image {
+  margin: auto $margin-modal;
+  width: calc(100% - 30px);
+  object-fit: cover;
+}
+
+.modal-info-primary {
+  font-size: 18px;
+  line-height: 1.2rem;
+}
+
+.infos {
+  margin-left: $margin-modal;
+}
+
+.line-break-modal {
+  background-color: $black;
+  opacity: 1;
+}
+
+.modal-info-content {
+  font-size: 20px;
+}
+
+.modal-content-text {
+  font-size: 18px;
+  line-height: 1.2rem;
 }

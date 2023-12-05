@@ -3,17 +3,17 @@ h1 {
 }
 
 h2 {
-  font-size: 18px ;
+  font-size: 18px;
   color: grey;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
-h5{
+h5 {
   text-transform: uppercase;
 }
 h3 {
   font-size: 16px;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
 .favorite {
@@ -30,7 +30,6 @@ h3 {
   color: red;
 }
 
-
 .border-image {
   border-top-right-radius: none;
   border-top-left-radius: none;
@@ -39,10 +38,13 @@ h3 {
 
 .tags {
   border: 1px solid black;
-  border-radius: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
+  border-radius: 30px;
+  padding: 3px 14px;
   margin: 3px;
+  font-size: 14px;
+  line-height: 0.9rem;
+  display: inline;
+  width: fit-content;
 }
 
 .separateur {

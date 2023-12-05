@@ -49,6 +49,8 @@
                 <p class="card-text" style="font-size:20px"><%= event.place_name %></p>
                 <p class="card-text" ><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m/%y') %> - <%= event.end_date.strftime('%d/%m/%y') %></p>
                 <p class="card-text" style="font-size:20px"><%= event.type_of_price %></p>
+                <p class="card-text" style="font-size:20px"><%= event.formatted_zip_code %></p>
+
                 <div class="d-flex">
                   <% event.tags.each do |tag| %>
                     <p class="tags"><%= tag %></p>
@@ -60,28 +62,59 @@
           </div>
         </div>
       <%# <% end %>
+
       <%# Modal %>
       <div id="myModal" class="modal" data-modal-target="modal" >
         <!-- Modal content -->
         <div class="modal-content">
+
           <div class="modal-header p-0">
-            <%# <span class="close" data-modal-target="modal" data-action="click->modal#close" >&times;</span> %>
             <%= image_tag "btns/close-modal.svg", height: 30, width: 30, alt: "marker liked", data: { action: "click->modal#close", modal_target: "modal" }, class: "close" %>
-            <h2 class=" border-left mb-0 w-100"><%= event.title %></h2>
-          </div>
-          <div class="modal-body p-0">
-            <div class="d-flex" >
-              <div class="grid-component border-top-custom border-bottom-custom"></div>
-              <img src="<%= event.url_image %>" alt=<%= event.title %> style="width: 100%; height: 150px; object-fit: cover;" class="border-image">
+            <div class="d-flex gap-3 align-items-center pe-2 pb-4 pt-2 border-left justify-content-between w-100">
+              <h2 class="mb-0 w-100 line-height-headers big-size-font"><%= event.title %></h2>
+              <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button" %>
             </div>
-            <p>Some text in the Modal Body</p>
-            <p>Some other text...</p>
+          </div>
+
+          <div class="modal-body p-0">
+            <img src="<%= event.url_image %>" alt=<%= event.title %> class="border-left border-top-custom border-bottom-custom modal-image">
+
+            <div class="infos d-flex gap-3 pt-3 border-left justify-content-between">
+
+              <div class="d-flex flex-column flex-grow-1">
+                <p class="headers-secondary modal-info-primary ps-3" ><%= event.place_name %></p>
+                <p class="ps-3 modal-info-content"><em><%= event.type_of_price %></em></p>
+              </div>
+
+              <div class="modal-tags d-flex flex-column align-items-end">
+                <% event.tags.each do |tag| %>
+                  <p class="tags flex-shrink-1 text-end"><%= tag %></p>
+                <% end %>
+              </div>
+
+            </div>
+
+            <hr class="w-100 py-0 my-0 line-break-modal">
+
+            <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
+              <p class="headers-secondary modal-info-primary ps-3" >Affluence</p>
+              <p class="ps-3 modal-info-content"><em>affluence data ici</em></p>
+            </div>
+
+            <hr class="w-100 py-0 my-0 line-break-modal">
+
+            <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
+              <%# <p class="headers-secondary modal-info-primary ps-3" >Affluence</p> %>
+              <p class="ps-3 modal-content-text"><%= event.chapeau %></p>
+            </div>
+
           </div>
           <div class="modal-footer">
-            <h3>Modal Footer</h3>
+
           </div>
         </div>
       </div>
+
     </div>
   <% end %>
 </div>
