@@ -26,9 +26,9 @@ export default class extends Controller {
         Accept: "text/plain",
       },
     })
-      .then((response) => response.text())
-      .then((data) => {
-        this.resultsTarget.innerHTML = data;
-      });
+    .then((response) => response.text())
+    .then((data) => {
+      this.resultsTarget.innerHTML = data;
+    });
   }
 }
