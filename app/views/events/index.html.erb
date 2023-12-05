@@ -1,7 +1,7 @@
-<div class="container" data-controller="index-filters">
+    <%= render "filters" %>
+<div class="container" data-controller="index-filters" style="padding-left: none">
   <div class="row">
 
-    <%= render "filters" %>
 
     <div data-index-filters-target="results">
       <%= render "list", events: @events %>
