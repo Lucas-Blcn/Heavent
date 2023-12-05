@@ -81,12 +81,16 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header p-0">
             <%# <span class="close" data-modal-target="modal" data-action="click->modal#close" >&times;</span> %>
             <%= image_tag "btns/close-modal.svg", height: 30, width: 30, alt: "marker liked", data: { action: "click->modal#close", modal_target: "modal" }, class: "close" %>
-            <h2><%= event.title %></h2>
+            <h2 class=" border-left mb-0 w-100"><%= event.title %></h2>
           </div>
-          <div class="modal-body">
+          <div class="modal-body p-0">
+            <div class="d-flex" >
+              <div class="grid-component border-top-custom border-bottom-custom"></div>
+              <img src="<%= event.url_image %>" alt=<%= event.title %> style="width: 100%; height: 150px; object-fit: cover;" class="border-image">
+            </div>
             <p>Some text in the Modal Body</p>
             <p>Some other text...</p>
           </div>
