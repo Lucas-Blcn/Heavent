@@ -3,14 +3,11 @@
 </div>
 
 
-<head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-
 <div class="container">
   <div class="row">
+  <% if @events.count == 0 %>
+    <p>Is your heart broken ? There is no heavent interest in your page.</p>
+  <% end %>
     <% @events.each do |event| %>
       <div class="col-6 col-md-6 card-wrapper">
         <div class="card mb-3 border" style="max-width: 540px;">
@@ -21,13 +18,11 @@
               <%= link_to event_path(event.id), class:"text-decoration-none" do %>
                 <div class="col-12 col-md-4">
                   <img src="<%=event.url_image%>" alt="" style="width: 100%; height: 150px; object-fit: cover;" class="border-image">
-                  <%# <img src="https://images.unsplash.com/photo-1513038630932-13873b1a7f29?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" style="width: 100%; height: 150px; object-fit: cover;" class="border-image"> %>
                 </div>
               <% end %>
                 <div class="col-12 col-md-8">
                   <div class="card-body">
                     <h1 class="card-title" style="height: 50px; overflow: hidden;"><%= event.title %></h1>
-                    <%# <h2 class="card-text" style="height: 100px; overflow: hidden;"><%= event.chapeau %>
                     <h2 class="card-text"><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m') %> - <%= event.end_date.strftime('%d/%m') %></h2>
                     <h3 class="card-text"><%= event.type_of_price %></h3>
                   </div>

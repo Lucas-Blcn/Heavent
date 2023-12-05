@@ -2,8 +2,11 @@
   <h1>Pas de résultats</h1>
 <% end %>
 
-<div class="list-group">
+<% id = 0 %>
+
+<div class="list-group" >
   <% @events.each do |event| %>
+
 
 
   <% if !event.affluence.nil? %>
@@ -31,28 +34,69 @@
                 <% if user_signed_in? && current_user.interests.find_by(event: event).present? %>
                   <i class="fa-solid fa-heart favorited"></i>
                 <% else %>
+                
+    <div data-controller="modal" class="controller" >
+      <div class="decoration-none list-group-item px-0 pt-0 list-group-item-action mt-3" data-index-filters-target="card" data-modal-target="card" data-action="click->modal#show" ></a>
+      <%# <%= link_to event_path(event.id), class: "decoration-none list-group-item px-0 pt-0 list-group-item-action mt-3", data: { index_filters_target: "card" } do %>
+        <div class="row" data-controller="favorite">
+          <div class="col-12 col-md-4" style="border-color: red">
+            <img src="<%= event.url_image %>" alt="" style="width: 100%; height: 150px; object-fit: cover; border-top: 2px solid black; border-left: 2px solid black" class="border-image">
+          </div>
+          <div class="col-12 col-md-8">
+            <div class="card-body background" style="border-left: 2px solid black">
+              <div class="d-flex justify-content-between" style="padding:20px">
+                <h5 class="card-title" style="height: 50px; overflow: hidden;">
+                  <%= event.title %>
+                </h5>
+
+                <%# favorite icon behavior %>
+                <div class="favorite ml-auto <%= 'favorited' if user_signed_in? && current_user.interests.find_by(event: event).present? %>" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-event-id="<%= event.id %>" >
+
+
                   <i class="fa-solid fa-heart"></i>
-                <% end %>
               </div>
 
-            </div>
+              </div>
 
-            <div class="separateur"></div>
+              <div class="separateur"></div>
 
-            <div style="padding:20px">
-              <p class="card-text" style="font-size:20px"><%= event.place_name %></p>
-              <p class="card-text" ><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m/%y') %> - <%= event.end_date.strftime('%d/%m/%y') %></p>
-              <p class="card-text" style="font-size:20px"><%= event.type_of_price %></p>
-              <div class="d-flex">
-                <% event.tags.each do |tag| %>
-                  <p class="tags"><%= tag %></p>
-                <% end %>
+              <div style="padding:20px">
+                <p class="card-text" style="font-size:20px"><%= event.place_name %></p>
+                <p class="card-text" ><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m/%y') %> - <%= event.end_date.strftime('%d/%m/%y') %></p>
+                <p class="card-text" style="font-size:20px"><%= event.type_of_price %></p>
+                <div class="d-flex">
+                  <% event.tags.each do |tag| %>
+                    <p class="tags"><%= tag %></p>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
+          </div>
         </div>
+      <%# <% end %>
+
+      <%# Modal %>
+      <div id="myModal" class="modal" data-modal-target="modal" >
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <%# <span class="close" data-modal-target="modal" data-action="click->modal#close" >&times;</span> %>
+            <%= image_tag "btns/close-modal.svg", height: 30, width: 30, alt: "marker liked", data: { action: "click->modal#close", modal_target: "modal" }, class: "close" %>
+            <h2><%= event.title %></h2>
+          </div>
+          <div class="modal-body">
+            <p>Some text in the Modal Body</p>
+            <p>Some other text...</p>
+          </div>
+          <div class="modal-footer">
+            <h3>Modal Footer</h3>
+          </div>
         </div>
+
       </div>
-    <% end %>
+
+    </div>
   <% end %>
 </div>
