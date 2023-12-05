@@ -1,2 +1,4 @@
-<h2> <%= event.title %> </h2>
-<p> <%= event.address %> </p>
+<%= link_to event_path(event), class:"text-decoration-black" do %>
+  <h2> <%= event.title %></h2>
+<% end %>
+<button class=""><%= link_to "See on maps", "https://maps.google.com/maps?q=#{event.address}", target: "_blank", class:"text-decoration-black" %></button>
