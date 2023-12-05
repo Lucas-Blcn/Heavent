@@ -1,24 +1,16 @@
 class EventsController < ApplicationController
-  DAYS = ["Mon", "Tue", "Wed"]
+  DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
   # Je visualise tous les évènements
   # skip_before_action :authenticate_user!, only: [:index, :show ]
   def index
     @empty = false
     @events = Event.all
     @events = @events.where(type_of_price: "gratuit") if params[:free] == "true"
-    # raise if params[:free] == "true"
 
     @today = DAYS.index(Date.today.strftime("%a"))
     @hour = Time.now.hour
 
     @events = filter if params[:query] && params[:query] != ""
-    # if params[:query] && params[:free] == "false"
-    #   filter
-    # elsif params[:free] == "true"
-    #   @events = Event.where(type_of_price: "gratuit")
-    # else
-    #   @events = Event.all
-    # end
     @empty = true if params[:free] == "true" && @events == []
     @events = Event.all if @events == []
     respond_to do |format|
