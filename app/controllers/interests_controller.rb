@@ -10,6 +10,7 @@ class InterestsController < ApplicationController
     @event = Event.find(params[:id])
 
     if current_user.has_favorited?(@event)
+
       # unfav event
       current_user.interests.find_by(event: @event).destroy
       render json: { favorite: false }
