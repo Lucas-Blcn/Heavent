@@ -32,43 +32,66 @@
     <% end %>
 
     <div data-controller="modal favorite" class="controller">
-      <div class="list-group-item pt-0 list-group-item-action mt-5 card-custom" data-index-filters-target="card" data-modal-target="card"></a>
-        <div class="row">
-          <div class="col-12 col-md-4" style="border-color: red">
-            <img src="<%= event.url_image %>" alt="" style="width: 100%; height: 150px; object-fit: cover; border-top: 2px solid black; border-left: 2px solid black" class="border-image">
+      <div class=" pt-0 mt-5 card-custom px-0" data-index-filters-target="card" data-modal-target="card"></a>
+        <div class="margin-right-custom">
+          <div class="px-0 margin-left-custom">
+            <img src="<%= event.url_image %>" alt="" class="main-image-card border-top-custom border-right-custom border-left">
           </div>
-          <div class="col-12 col-md-8">
-            <div class="<%=background_affluence%>" style="border-left: 2px solid black">
-              <div class="d-flex justify-content-between align-items-center gap-3 py-3 pe-3">
+          <div class="px-0">
+            <div class="">
+              <div class="d-flex justify-content-between align-items-center gap-3 py-3 pe-3 margin-left-custom border-left border-right-custom">
 
                 <h2 class="mb-0 w-100 line-height-headers text-start headers-secondary"><%= event.title %></h2>
                 <div class="favorite ml-auto <%= 'favorited' if user_signed_in? && current_user.interests.find_by(event: event).present? %>" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-event-id="<%= event.id %>" >
-                <% if user_signed_in? && current_user.interests.find_by(event: event).present? %>
-                  <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" }, class: 'd-none' %>
-                  <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" } %>
-                <% else %>
-                  <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" } %>
-                  <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" }, class: 'd-none' %>
-                <% end %>
+                  <% if user_signed_in? && current_user.interests.find_by(event: event).present? %>
+                    <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" }, class: 'd-none' %>
+                    <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" } %>
+                  <% else %>
+                    <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" } %>
+                    <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" }, class: 'd-none' %>
+                  <% end %>
+                </div>
               </div>
+
+              <hr class="py-0 my-0 line-break-modal">
+
+              <div class="<%=background_affluence%>">
+                <div class="d-flex align-items-center margin-left-custom border-left border-right-custom pt-3 gap-3">
+                  <p class="headers-secondary modal-info-primary ps-3" >Affluence</p>
+                  <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
+                  <p class="ps-3 modal-info-content">
+                    <% affluence_icons_pattern = case background_affluence %>
+                    <% when 'bg-low-affluence' %>
+                      <%= image_tag "icons-affluence/low-affluence-circle.svg" %>
+                    <% when 'bg-below-average-affluence' %>
+                      <%= image_tag "icons-affluence/below-average-affluence-circle.svg"%>
+                    <% when 'bg-average-affluence' %>
+                      <%= image_tag "icons-affluence/average-affluence-circle"%>
+                    <% else %>
+                      <p class="ps-3">L'affluence n'est pas disponible pour cet événement.</p>
+                    <% end %>
+                  </p>
+                </div>
               </div>
-              <div class="separateur"></div>
-              <div style="padding:20px">
-                <p class="card-text mb-0" style="font-size:20px"><%= event.place_name %>,</p>
-                <p class="card-text" style="font-size:20px"><%= event.formatted_zip_code %></p>
+
+              <hr class="py-0 my-0 line-break-modal">
+
+              <div class="margin-left-custom px-3 pt-3 border-left border-right-custom">
+                <p class="card-text" style="font-size:20px"><%= event.place_name %>, <%= event.formatted_zip_code %></p>
                 <div class="d-flex justify-content-between">
                   <p class="card-text" ><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m/%y') %> - <%= event.end_date.strftime('%d/%m/%y') %></p>
                   <p class="card-text card-price" style="font-size:20px"><em><%= event.type_of_price %></em></p>
                 </div>
 
 
-                <div class="d-flex ">
+
+                <div class="d-flex flex-wrap">
                   <% event.tags.each do |tag| %>
-                    <p class="tags flex-shrink-1 align-self-center">#<%= tag %></p>
+                    <p class="tags flex-shrink-1 align-self-center"><%= tag %></p>
                   <% end %>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <button data-action="click->modal#show" class="btn-black mt-4 mb-2" >En voir plus<%= image_tag "btns/arrow.svg", height: 24, width: 24 %></button>
+                  <button data-action="click->modal#show" class="btn-black mt-4 mb-3" >En voir plus<%= image_tag "btns/arrow.svg", height: 24, width: 24 %></button>
                 </div>
               </div>
             </div>

@@ -1,15 +1,22 @@
 .bg-no-affluence-data {
   background-color: aqua;
+  background-size: cover;
 }
 
 .bg-low-affluence {
   background-image: url("bg-patterns/bg-low-affluence-blue.svg") ;
+  background-size: cover;
+  background-position-y: center;
 }
 
 .bg-below-average-affluence {
   background-image: url("bg-patterns/bg-below-average-affluence.svg") ;
+  background-size: cover;
+  background-position-y: center;
 }
 
 .bg-average-affluence {
   background-image: url("bg-patterns/bg-average-affluence-pink.svg");
+  background-size: cover;
+  background-position-y: center;
 }
