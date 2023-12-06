@@ -22,7 +22,8 @@ h3 {
   right: 10px;
   cursor: pointer;
   font-size: 24px;
-  color: black;
+  color: $black;
+
 }
 
 .favorited {
@@ -36,7 +37,7 @@ h3 {
 }
 
 .tags {
-  border: 1px solid black;
+  border: 1px solid $black;
   border-radius: 30px;
   padding: 3px 14px;
   margin: 3px;
@@ -49,7 +50,7 @@ h3 {
 .separateur {
   height: 1px;
   width: 100%;
-  background-color: black;
+  background-color: $black;
 }
 
 .background {

@@ -48,7 +48,7 @@
   background-color: $bg-gray;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  border-left: 1px solid black;
+  border-left: 1px solid $black;
   margin-bottom: 25px;
   > p {
     word-wrap: break-word;
@@ -69,12 +69,12 @@
 .toggle {
   width: fit-content;
   cursor: pointer;
-  color: black;
+  color: $black;
   border: none;
   padding: 10px;
   background-color: none;
   position: fixed;
-  background-color: white;
+  background-color: $creme;
   padding: 10px;
   border-radius: 50%;
   width: 50px;
@@ -90,7 +90,7 @@
 
 .wrapper-container {
   padding: 1rem 0;
-  background-color: black;
+  background-color: $black;
 }
 
 .wrapper-image {
@@ -98,5 +98,5 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: black;
+  background-color: $black;
 }
