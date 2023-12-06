@@ -1,10 +1,11 @@
 
 <div class="container" data-controller="index-filters" style="padding-left: none">
-  <div class="row">
+  <div class="row mb-5">
 
     <%= render "filters" %>
 
-    <div data-index-filters-target="results">
+    <div data-index-filters-target="results" class="mb-3">
+
       <%= render "list", events: @events %>
     </div>
 
