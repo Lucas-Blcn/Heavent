@@ -11,6 +11,7 @@
   <% @events.each do |event| %>
     <% id += 1 %>
     <% background_affluence = %>
+    <% synthese_affluence = "" %>
 
     <% if !event.affluence.nil? %>
       <% @hour %>
@@ -20,10 +21,13 @@
         <% affluences_data_intensity = affluences_data_hour["intensity_txt"] %>
         <% intensity_txt = case affluences_data_intensity %>
         <% when "Low"%>
+          <% synthese_affluence = "Faible" %>
           <% background_affluence = 'bg-low-affluence'%>
         <% when "Below average"%>
+          <% synthese_affluence = "En dessous de la moyenne" %>
           <% background_affluence = 'bg-below-average-affluence' %>
         <% when "Average"%>
+          <% synthese_affluence = "Moyenne" %>
           <% background_affluence = 'bg-average-affluence' %>
         <% else %>
           <% background_affluence = 'bg-no-affluence-data' %>
@@ -122,7 +126,12 @@
             <hr class="w-100 py-0 my-0 line-break-modal">
 
             <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
-              <p class="headers-secondary modal-info-primary ps-3" >Affluence</p>
+              <p class="headers-secondary modal-info-primary ps-3 mb-0" >Affluence:
+                <% if synthese_affluence != "" %>
+                  <p class="ps-3 modal-info-content mb-0"><em><%=synthese_affluence%></em></p>
+                <%end %>
+              </p>
+
               <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
               <p class="ps-3 modal-info-content">
                 <% affluence_icons_pattern = case background_affluence %>
@@ -133,7 +142,7 @@
                 <% when 'bg-average-affluence' %>
                   <%= image_tag "icons-affluence/average-affluence-circle"%>
                 <% else %>
-                  <p class="ps-3">L'affluence n'est pas disponible pour cet événement.</p>
+                  <p class="ps-3 modal-info-content"><em>L'affluence n'est pas disponible pour cet événement</em></p>
                 <% end %>
 
               </p>
