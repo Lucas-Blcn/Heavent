@@ -19,11 +19,11 @@ export default class extends Controller {
     if (data.favorite) {
       // red heart
       this.heartActiveTargets.forEach((item) => {
-        item.classList.add("d-none");
+        item.classList.remove("d-none");
       });
 
       this.heartInactiveTargets.forEach((item) => {
-        item.classList.remove("d-none");
+        item.classList.add("d-none");
       });
 
       // this.heartActiveTarget.classList.add("d-none");
@@ -36,11 +36,11 @@ export default class extends Controller {
       // this.heartInactiveTarget.classList.add("d-none");
 
       this.heartActiveTargets.forEach((item) => {
-        item.classList.remove("d-none");
+        item.classList.add("d-none");
       });
 
       this.heartInactiveTargets.forEach((item) => {
-        item.classList.add("d-none");
+        item.classList.remove("d-none");
       });
     }
   }

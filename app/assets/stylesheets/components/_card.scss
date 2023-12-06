@@ -25,7 +25,6 @@ h3 {
   cursor: pointer;
   font-size: 24px;
   color: $black;
-
 }
 
 .favorited {
@@ -57,4 +56,14 @@ h3 {
 
 .background {
   background-color: $creme;
+}
+
+.card-custom {
+  background: none;
+  border: none;
+
+  h2 {
+    font-size: 18px;
+    line-height: 1.4rem;
+  }
 }
