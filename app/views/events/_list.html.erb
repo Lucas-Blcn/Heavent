@@ -33,6 +33,8 @@
           <% background_affluence = 'bg-no-affluence-data' %>
         <% end %>
       <% end %>
+      <% else %>
+          <% synthese_affluence = "Données indisponibles" %>
     <% end %>
 
     <div data-controller="modal favorite" class="controller">
@@ -126,10 +128,8 @@
             <hr class="w-100 py-0 my-0 line-break-modal">
 
             <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
-              <p class="headers-secondary modal-info-primary ps-3 mb-0" >Affluence:
-                <% if synthese_affluence != "" %>
+              <p class="headers-secondary modal-info-primary ps-3 mb-0" >Affluence de <%=@hour%>h à <%= @hour + 1 %>h:
                   <p class="ps-3 modal-info-content mb-0"><em><%=synthese_affluence%></em></p>
-                <%end %>
               </p>
 
               <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
@@ -142,7 +142,7 @@
                 <% when 'bg-average-affluence' %>
                   <%= image_tag "icons-affluence/average-affluence-circle"%>
                 <% else %>
-                  <p class="ps-3 modal-info-content"><em>L'affluence n'est pas disponible pour cet événement</em></p>
+                  <%# <p class="ps-3 modal-info-content"><em>L'affluence n'est pas disponible pour cet événement</em></p> %>
                 <% end %>
 
               </p>
