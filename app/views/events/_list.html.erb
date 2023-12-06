@@ -66,9 +66,10 @@
       <%# Modal %>
       <div id="myModal" class="modal" data-modal-target="modal" >
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content mb-5" data-modal-target="modalContent" >
 
           <div class="modal-header p-0">
+
             <%= image_tag "btns/close-modal.svg", height: 30, width: 30, alt: "marker liked", data: { action: "click->modal#close", modal_target: "modal" }, class: "close" %>
             <div class="d-flex gap-3 align-items-center pe-2 pb-4 pt-2 border-left justify-content-between w-100">
               <h2 class="mb-0 w-100 line-height-headers big-size-font"><%= event.title %></h2>
@@ -106,15 +107,33 @@
             <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
               <%# <p class="headers-secondary modal-info-primary ps-3" >Affluence</p> %>
               <p class="ps-3 modal-content-text"><%= event.chapeau %></p>
+              <%# <div class="toggle arrow_dahlia arrow_dahlia_down" onclick="toggleDescription()"></div> %>
+
+              <div class="description-modal modal-content-text ps-3 d-none"><%= event.description.html_safe %></div>
             </div>
-
           </div>
-          <div class="modal-footer">
 
+
+          <div class="modal-footer d-flex justify-content-center py-3 border-left flex-column px-0">
+            <hr class="w-25 py-0 my-0 line-break-modal mb-3">
+            <%= image_tag "btns/btn-plus.svg", height: 37, width: 37, alt: "like button", onclick: "toggleDescription()", class: "toggle-plus" %>
           </div>
         </div>
-      </div>
 
+        <script>
+          function toggleDescription() {
+            const description = document.querySelector('.description-modal');
+            const toggleButton = document.querySelector('.toggle-plus');
+            const chapeau = document.querySelector('.modal-content-text');
+
+            chapeau.classList.toggle('d-none');
+            description.classList.toggle('d-none');
+
+            toggleButton.classList.toggle('arrow_dahlia_up');
+          }
+        </script>
+
+      </div>
     </div>
   <% end %>
 </div>
