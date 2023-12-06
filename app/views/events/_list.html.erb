@@ -29,9 +29,9 @@
       <% end %>
     <% end %>
 
-    <div data-controller="modal" class="controller" >
-      <div class="decoration-none list-group-item px-0 pt-0 list-group-item-action mt-3" data-index-filters-target="card" data-modal-target="card" data-action="click->modal#show" ></a>
-        <div class="row" data-controller="favorite">
+    <div data-controller="modal favorite" class="controller">
+      <div class="decoration-none list-group-item px-0 pt-0 list-group-item-action mt-3" data-index-filters-target="card" data-modal-target="card"></a>
+        <div class="row">
           <div class="col-12 col-md-4" style="border-color: red">
             <img src="<%= event.url_image %>" alt="" style="width: 100%; height: 150px; object-fit: cover; border-top: 2px solid black; border-left: 2px solid black" class="border-image">
           </div>
@@ -43,8 +43,13 @@
                 </h5>
                 <%# favorite icon behavior %>
                 <div class="favorite ml-auto <%= 'favorited' if user_signed_in? && current_user.interests.find_by(event: event).present? %>" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-event-id="<%= event.id %>" >
-                  <i class="fa-solid fa-heart"></i>
-                  <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button" %>
+                  <% if user_signed_in? && current_user.interests.find_by(event: event).present? %>
+                    <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" }, class: 'd-none' %>
+                    <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" } %>
+                  <% else %>
+                    <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" } %>
+                    <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" }, class: 'd-none' %>
+                  <% end %>
                 </div>
               </div>
               <div class="separateur"></div>
@@ -59,11 +64,17 @@
                     <p class="tags"><%= tag %></p>
                   <% end %>
                 </div>
+                <div class="d-flex justify-content-center">
+                  <button data-action="click->modal#show" class="btn-black mt-5 mb-3" >En voir plus<%= image_tag "btns/arrow.svg", height: 24, width: 24 %></button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
+
 
       <%# Modal %>
       <div id="myModal" class="modal" data-modal-target="modal" >
@@ -75,7 +86,15 @@
             <%= image_tag "btns/close-modal.svg", height: 30, width: 30, alt: "marker liked", data: { action: "click->modal#close", modal_target: "modal" }, class: "close" %>
             <div class="d-flex gap-3 align-items-center pe-2 pb-4 pt-2 border-left justify-content-between w-100">
               <h2 class="mb-0 w-100 line-height-headers big-size-font"><%= event.title %></h2>
-              <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button" %>
+                <div class="favorite ml-auto <%= 'favorited' if user_signed_in? && current_user.interests.find_by(event: event).present? %>" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-event-id="<%= event.id %>" >
+                <% if user_signed_in? && current_user.interests.find_by(event: event).present? %>
+                  <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" }, class: 'd-none' %>
+                  <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" } %>
+                <% else %>
+                  <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" } %>
+                  <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" }, class: 'd-none' %>
+                <% end %>
+              </div>
             </div>
           </div>
 
