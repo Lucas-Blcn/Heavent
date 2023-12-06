@@ -1,0 +1,12 @@
+.btn-black {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  background-color: $black;
+  color: $creme;
+  padding: 8px 32px;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  border-radius: 30px;
+}
