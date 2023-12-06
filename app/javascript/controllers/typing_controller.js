@@ -14,7 +14,6 @@ export default class extends Controller {
   };
 
   typing() {
-    console.log(this.Textvalue);
     if (this.i < this.textValue.length) {
       this.textTarget.innerHTML += this.textValue.charAt(this.i);
       this.i++;

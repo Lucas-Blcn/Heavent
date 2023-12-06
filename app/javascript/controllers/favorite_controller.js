@@ -17,7 +17,6 @@ export default class extends Controller {
     const data = await response.json();
 
     if (data.favorite) {
-      console.log("not yet fav");
       // red heart
       this.heartActiveTargets.forEach((item) => {
         item.classList.add("d-none");
@@ -30,7 +29,6 @@ export default class extends Controller {
       // this.heartActiveTarget.classList.add("d-none");
       // this.heartInactiveTarget.classList.remove("d-none");
     } else {
-      console.log("already fav");
       // empty heart
       this.heartTarget.classList.remove("favorited");
 
