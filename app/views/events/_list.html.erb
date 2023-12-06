@@ -1,6 +1,8 @@
 
 <% if @empty %>
   <h1>Pas de résultats pour votre recherche. Voici nos suggestions:</h1>
+<% else %>
+  <h1 class="headers-primary bigger-size-font text-center main-h1 border-none my-0">Événements maintenant</h1>
 <% end %>
 
 <% id = 0 %>
@@ -54,17 +56,19 @@
               <div style="padding:20px">
                 <p class="card-text mb-0" style="font-size:20px"><%= event.place_name %>,</p>
                 <p class="card-text" style="font-size:20px"><%= event.formatted_zip_code %></p>
-                <p class="card-text" ><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m/%y') %> - <%= event.end_date.strftime('%d/%m/%y') %></p>
-                <p class="card-text" style="font-size:20px"><%= event.type_of_price %></p>
+                <div class="d-flex justify-content-between">
+                  <p class="card-text" ><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m/%y') %> - <%= event.end_date.strftime('%d/%m/%y') %></p>
+                  <p class="card-text card-price" style="font-size:20px"><em><%= event.type_of_price %></em></p>
+                </div>
 
 
-                <div class="d-flex">
+                <div class="d-flex ">
                   <% event.tags.each do |tag| %>
-                    <p class="tags"><%= tag %></p>
+                    <p class="tags flex-shrink-1 align-self-center">#<%= tag %></p>
                   <% end %>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <button data-action="click->modal#show" class="btn-black mt-5 mb-3" >En voir plus<%= image_tag "btns/arrow.svg", height: 24, width: 24 %></button>
+                  <button data-action="click->modal#show" class="btn-black mt-4 mb-2" >En voir plus<%= image_tag "btns/arrow.svg", height: 24, width: 24 %></button>
                 </div>
               </div>
             </div>
