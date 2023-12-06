@@ -111,7 +111,7 @@
                 <% when 'bg-average-affluence' %>
                   <%= image_tag "icons-affluence/average-affluence-circle"%>
                 <% else %>
-                  <p>L'affluence n'est pas disponible.</p>
+                  <p class="ps-3">L'affluence n'est pas disponible pour cet événement.</p>
                 <% end %>
 
               </p>
@@ -128,7 +128,9 @@
 
 
           <div class="modal-footer d-flex justify-content-center py-3 border-left flex-column px-0">
-            <a href=<%= event.url_to_book %> target="_blank" >Allez vers leur site</a>
+            <% if event.url_link.present? %>
+              <a href=<%= event.url_link %> target="_blank" >Allez sur leur site</a>
+            <% end %>
             <hr class="w-25 py-0 my-0 line-break-modal mb-3">
             <%= image_tag "btns/btn-plus.svg", height: 37, width: 37, alt: "like button", class: "toggle-plus", data: { modal_target: "btn", action: "click->modal#toggleDescription" } %>
           </div>
