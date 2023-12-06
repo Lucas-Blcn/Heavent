@@ -99,7 +99,20 @@
 
             <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
               <p class="headers-secondary modal-info-primary ps-3" >Affluence</p>
-              <p class="ps-3 modal-info-content"><em>affluence data ici</em></p>
+              <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
+              <p class="ps-3 modal-info-content">
+                <% affluence_icons_pattern = case background_affluence %>
+                <% when 'bg-low-affluence' %>
+                  <%= image_tag "icons-affluence/low-affluence-circle.svg" %>
+                <% when 'bg-below-average-affluence' %>
+                  <%= image_tag "icons-affluence/below-average-affluence-circle.svg"%>
+                <% when 'bg-average-affluence' %>
+                  <%= image_tag "icons-affluence/average-affluence-circle"%>
+                <% else %>
+                  <p>L'affluence n'est pas disponible.</p>
+                <% end %>
+
+              </p>
             </div>
 
             <hr class="w-100 py-0 my-0 line-break-modal">
