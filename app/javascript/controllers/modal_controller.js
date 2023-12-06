@@ -2,7 +2,14 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="modal"
 export default class extends Controller {
-  static targets = ["card", "modal", "close", "modalContent"];
+  static targets = [
+    "card",
+    "modal",
+    "close",
+    "modalContent",
+    "description",
+    "btn",
+  ];
 
   connect() {}
 
@@ -23,5 +30,9 @@ export default class extends Controller {
     setTimeout(() => {
       this.modalTarget.style.display = "none";
     }, 400);
+  }
+
+  toggleDescription() {
+    this.descriptionTarget.classList.toggle("d-none");
   }
 }
