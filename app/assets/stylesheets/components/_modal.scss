@@ -165,6 +165,13 @@ $margin-modal: 30px;
 
 .modal-footer {
   color: $black;
+
+  a {
+    color: $black;
+    font-weight: 500;
+    font-size: 18px;
+    text-decoration: none;
+  }
 }
 
 .grid-component {
