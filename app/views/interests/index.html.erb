@@ -1,5 +1,11 @@
 <div class="container">
-  <h1>Les heavent culturels dans votre coeur</h1>
+  <% if @events.count == 0 %>
+    <h1>Les Heavent culturel dans votre coeur</h1>
+    <% elsif @events.count == 1 %>
+      <h1>L'Heavent culturel dans votre coeur</h1>
+    <% else %>
+      <h1>Les <%=@events.count%> Heavent culturel dans votre coeur</h1>
+  <% end %>
 </div>
 
 
@@ -7,8 +13,6 @@
   <div class="row">
   <% if @events.count == 0 %>
     <p>Vous n'avez pas encore ajouté d'Heavent culturels à vos favoris.</p>
-    <% else %>
-    <p>Vos <%=@events.count %> Heavent favoris</p>
   <% end %>
     <% @events.each do |event| %>
       <div class="col-6 col-md-6 card-wrapper">
