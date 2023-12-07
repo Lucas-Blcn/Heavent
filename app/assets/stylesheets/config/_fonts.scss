@@ -56,7 +56,7 @@ $headers-font: "Dahlia Medium Condensed", "Helvetica", "sans-serif";
 }
 
 .line-height-card {
-  line-height: 1.4rem;
+  line-height: 1.3rem;
 }
 
 .big-size-font {
@@ -75,4 +75,8 @@ $headers-font: "Dahlia Medium Condensed", "Helvetica", "sans-serif";
   line-height: 3.6rem;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+.weight-500 {
+  font-weight: 500;
 }

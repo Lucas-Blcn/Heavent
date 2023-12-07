@@ -1,8 +1,9 @@
 
 <% if @empty %>
-  <h1>Pas de résultats pour votre recherche. Voici nos suggestions:</h1>
+  <h1 class="headers-primary bigger-size-font main-h1 my-0 border-none">Pas de résultats</h1>
+  <h1 class="mt-0">Voici nos suggestions:</h1>
 <% else %>
-  <h1 class="headers-primary bigger-size-font text-center main-h1 border-none my-0">Événements du moment</h1>
+  <h1 class="headers-primary bigger-size-font text-center main-h1 border-none my-0">Événements <br>du moment</h1>
 <% end %>
 
 <% id = 0 %>
@@ -82,7 +83,7 @@
                     <% when 'bg-average-affluence' %>
                       <%= image_tag "icons-affluence/average-affluence-circle"%>
                     <% else %>
-                      <p class="ps-3">L'affluence n'est pas disponible pour cet événement.</p>
+                      <p class="ps-3 line-height-card" style="font-size: 20px;">Données indisponibles</p>
                     <% end %>
                   </p>
                 </div>
@@ -185,7 +186,6 @@
           <%# SUGGESTION D'AFFLUENCE DEBUT %>
           <% if synthese_affluence != "Données indisponibles" %>
             <% index = %>
-            <hr class="w-100 py-0 my-0 line-break-modal">
             <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
 
               <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
