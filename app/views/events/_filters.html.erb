@@ -1,5 +1,5 @@
 <%= simple_form_for :filter, url: events_path, method: :get, data: { index_filters_target: "form" } do |f| %>
-  <div class="filter-form mb-3 pt-0">
+  <div class="filter-form pt-0">
 
 
     <%= f.input :tags,
@@ -13,8 +13,9 @@
     <%= f.input :type_of_price,
       as: :check_boxes,
       collection: ["gratuit"],
-      input_html: { class: "tag-selector", data: { action: "click->index-filters#toggle", index_filters_target: "priceInput" } },
-                  item_wrapper_class: 'tag-item free-item'
+      input_html: { class: "form-check-input", data: { action: "click->index-filters#toggle", index_filters_target: "priceInput" } },
+      item_wrapper_class: 'form-check form-switch d-flex me-3 gap-2 align-items-center justify-content-end',
+      label_html: { class: "form-check-label position-relative" }
     %>
 
 
