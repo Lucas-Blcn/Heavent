@@ -34,5 +34,6 @@ export default class extends Controller {
 
   toggleDescription() {
     this.descriptionTarget.classList.toggle("d-none");
+    
   }
 }
