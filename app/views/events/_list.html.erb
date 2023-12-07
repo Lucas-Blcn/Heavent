@@ -10,7 +10,7 @@
 <div class="list-group" >
   <% @events.each do |event| %>
     <% id += 1 %>
-    <% background_affluence = %>
+    <% background_affluence = 'bg-no-affluence-data' %>
     <% synthese_affluence = "" %>
 
     <% if !event.affluence.nil? %>
@@ -35,6 +35,7 @@
       <% end %>
       <% else %>
           <% synthese_affluence = "Données indisponibles" %>
+          <% background_affluence = 'bg-no-affluence-data' %>
     <% end %>
 
     <div data-controller="modal favorite" class="controller">
@@ -63,7 +64,7 @@
 
               <div class="<%=background_affluence%>">
                 <div class="d-flex align-items-center margin-left-custom border-left border-right-custom pt-3 gap-3">
-                  <p class="headers-secondary modal-info-primary ps-3" >Affluence</p>
+                  <p class="headers-secondary modal-info-primary ms-3 border-custom px-3 py-2 bg-creme" >Affluence</p>
                   <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
                   <p class="ps-3 modal-info-content">
                     <% affluence_icons_pattern = case background_affluence %>
@@ -149,7 +150,7 @@
             </div>
 
             <hr class="w-100 py-0 my-0 line-break-modal">
-
+            <div >
             <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
               <p class="headers-secondary modal-info-primary ps-3 mb-0" >Affluence de <%=@hour%>h à <%= @hour + 1 %>h:
                   <p class="ps-3 modal-info-content mb-0"><em><%=synthese_affluence%></em></p>
