@@ -8,7 +8,8 @@ export default class extends Controller {
     "close",
     "modalContent",
     "description",
-    "btn",
+    "btnPlus",
+    "btnMoins",
   ];
 
   connect() {}
@@ -34,5 +35,7 @@ export default class extends Controller {
 
   toggleDescription() {
     this.descriptionTarget.classList.toggle("d-none");
+    this.btnPlusTarget.classList.toggle("d-none");
+    this.btnMoinsTarget.classList.toggle("d-none");
   }
 }
