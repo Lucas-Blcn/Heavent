@@ -160,7 +160,7 @@
             <div class="<%=background_affluence%>">
               <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left">
                 <div class= "px-3 py-3 border-custom bg-creme mx-3 my-4 d-inline-block">
-                  <p class="headers-secondary modal-info-primary mb-2" >Affluence de ce jour (<%=@hour%>h à <%= @hour + 1 %>h) :p>
+                  <p class="headers-secondary modal-info-primary mb-2" >Affluence de ce jour <br><%=@hour%>h - <%= @hour + 1 %>h :</p>
                   <div class="d-flex align-items-center gap-3">
                     <p class="modal-info-content mb-0 line-height-card"><em><%=synthese_affluence%></em></p>
                     <% affluence_icons_pattern = case background_affluence %>
@@ -215,7 +215,7 @@
                       <%affluence_plus_faible_txt = "moyenne"%>
                     <% end %>
                     <%affluence_plus_faible_txt%>
-                  <%=affluence_plus_faible_heure%>h à <%=affluence_plus_faible_heure + 1%>h : L'affluence sera <em><%=affluence_plus_faible_txt %></em></p>
+                  <%=affluence_plus_faible_heure%>h - <%=affluence_plus_faible_heure + 1%>h : L'affluence sera <em><%=affluence_plus_faible_txt %></em>.</p>
               </p>
 
             </div>
@@ -245,7 +245,8 @@
             </div>
             <% end %>
             <%# <hr class="w-25 py-0 my-0 line-break-modal mb-3"> %>
-            <%= image_tag "btns/btn-plus.svg", height: 37, width: 37, alt: "like button", class: "toggle-plus", data: { modal_target: "btn", action: "click->modal#toggleDescription" } %>
+            <%= image_tag "btns/btn-plus.svg", height: 37, width: 37, alt: "like button", class: "toggle-plus", data: { modal_target: "btnPlus", action: "click->modal#toggleDescription" } %>
+            <%= image_tag "btns/btn-moins.svg", height: 37, width: 37, alt: "like button", class: "toggle-moins d-none", data: { modal_target: "btnMoins", action: "click->modal#toggleDescription" } %>
           </div>
         </div>
 
