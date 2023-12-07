@@ -1,15 +1,23 @@
 .bg-no-affluence-data {
-  background-color: aqua;
+  background-image: url("bg-patterns/bg-no-data-new.svg");
+  background-size: cover;
+  background-position-y: center;
 }
 
 .bg-low-affluence {
-  background-image: url("bg-patterns/bg-low-affluence-blue.svg") ;
+  background-image: url("bg-patterns/bg-low-affluence-new.svg");
+  background-size: cover;
+  background-position-y: center;
 }
 
 .bg-below-average-affluence {
-  background-image: url("bg-patterns/bg-below-average-affluence.svg") ;
+  background-image: url("bg-patterns/bg-below-average-affluence-new.svg");
+  background-size: cover;
+  background-position-y: center;
 }
 
 .bg-average-affluence {
-  background-image: url("bg-patterns/bg-average-affluence-pink.svg");
+  background-image: url("bg-patterns/bg-average-affluence-new.svg");
+  background-size: cover;
+  background-position-y: center;
 }
