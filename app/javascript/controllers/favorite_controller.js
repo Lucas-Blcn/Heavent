@@ -11,7 +11,6 @@ export default class extends Controller {
 
   async toggleFavorite(evt) {
     evt.preventDefault();
-    console.log("qfqsef");
     const eventId = evt.currentTarget.dataset.eventId;
     const response = await fetch(`/interests/${eventId}/favorite`);
     const data = await response.json();
