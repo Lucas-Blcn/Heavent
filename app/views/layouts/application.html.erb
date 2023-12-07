@@ -21,9 +21,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <%= render 'shared/ios_pwa_links' %>
-    <%#  %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
   </head>
 
   <body>
@@ -45,5 +45,6 @@
     <% unless action_name == "landing" %>
       <%= render "shared/navbar" %>
     <% end %>
+
   </body>
 </html>

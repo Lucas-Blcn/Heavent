@@ -5,29 +5,46 @@
   <%# </div> %>
 
   <%# PERMET DE REDIRIGER VERS LOG_IN %>
-    <%= link_to new_user_session_path do %>
-      <%= image_tag "icons/user.svg", class: "navbar-icon" %>
-      <%# <%= image_tag "icons/user.svg", class: "navbar-icon" %>
+  <% is_user_page = current_page?(new_user_session_path) %>
+
+  <%= link_to events_path do %>
+    <% if is_user_page %>
+      <%= image_tag "icons/home-active.svg", class: "navbar-icon" %>
+    <% else %>
+      <%= image_tag "icons/home-inactive.svg", class: "navbar-icon" %>
     <% end %>
+  <% end %>
+
 
   <%# <div>
     <%= image_tag "icons/map.svg", class:"navbar-icon" %>
   <%# </div>  %>
 
   <%# PERMET DE REDIRIGER VERS map %>
-    <%= link_to map_path do %>
-      <%= image_tag "icons/map.svg", class: "navbar-icon"%>
-      <%# <%= image_tag "icons/map.svg", class: "navbar-icon" %>
+  <% is_map_page = current_page?(map_path) %>
+
+  <%= link_to map_path do %>
+    <% if is_map_page %>
+      <%= image_tag "btns/map-active.svg", class: "navbar-icon" %>
+    <% else %>
+      <%= image_tag "btns/map-inactive.svg", class: "navbar-icon" %>
     <% end %>
+  <% end %>
+
 
   <%# <div> %>
     <%# <%= image_tag "icons/love.svg", class:"navbar-icon" %>
   <%# </div> %>
 
   <%# PERMET DE REDIRIGER VERS Interests %>
-    <%= link_to interests_path do %>
-      <%= image_tag "btns/heart-inactive.svg",class: "navbar-icon"  %>
-      <%# <%= image_tag "icons/love.svg", class: "navbar-icon" %>
+  <% is_interests_page = current_page?(interests_path) %>
+
+  <%= link_to interests_path do %>
+    <% if is_interests_page %>
+      <%= image_tag "btns/heart-active.svg", class: "navbar-icon" %>
+    <% else %>
+      <%= image_tag "btns/heart-inactive.svg", class: "navbar-icon" %>
     <% end %>
+  <% end %>
 
 </div>

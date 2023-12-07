@@ -5,8 +5,11 @@
   <div>
   <h1 class="landing-title">HEAVENT</h1>
   </div>
-  <div data-controller="typing" data-typing-text-value="All events, at the last minute, only for you." class="typing-text">
-    <p data-typing-target="text"></p>
+  <%# <div data-controller="typing" data-typing-text-value="All events, at the last minute, only for you." class="typing-text">
+    <p data-typing-target="text"></p> %>
+  </div>
+  <div class="btn-landing "style="justify-content: center; align-items: center;">
+    <%= link_to "VOIR LES ÉVÉNEMENTS", events_path %>
   </div>
  <div class="btn-black mt-4 mb-3" style="justify-content: center; align-items: center;">
     <%= link_to events_path, style: "text-decoration: none; color: $creme;" do %>
@@ -18,4 +21,6 @@
 
 
 
+
 <% <meta HTTP-EQUIV="REFRESH" content="6; url=/events"> %>
+
