@@ -10,8 +10,12 @@
 <div class="list-group" >
   <% @events.each do |event| %>
     <% id += 1 %>
+  
     <% background_affluence = 'bg-no-affluence-data' %>
-    <% synthese_affluence = "" %>
+    <% synthese_affluence = "Données indisponibles" %> <%# SERA Faible, En dessous de la moyenne, moyenne%>
+    <% affluences_data_day = %>
+    <% affluences_data_intensity = "" %> <%#  SERA Low ou Below average ou Average ou ""%>
+    <% array_intensity = %>
 
     <% if !event.affluence.nil? %>
       <% @hour %>
@@ -19,24 +23,27 @@
       <% if !affluences_data_day["analysis"].find { |entry| entry['hour'] == @hour }.nil? %>
         <% affluences_data_hour = affluences_data_day["analysis"].find { |entry| entry['hour'] == @hour } %>
         <% affluences_data_intensity = affluences_data_hour["intensity_txt"] %>
-        <% intensity_txt = case affluences_data_intensity %>
-        <% when "Low"%>
-          <% synthese_affluence = "Faible" %>
-          <% background_affluence = 'bg-low-affluence'%>
-        <% when "Below average"%>
-          <% synthese_affluence = "En dessous de la moyenne" %>
-          <% background_affluence = 'bg-below-average-affluence' %>
-        <% when "Average"%>
-          <% synthese_affluence = "Moyenne" %>
-          <% background_affluence = 'bg-average-affluence' %>
+          <% intensity_txt = case affluences_data_intensity %>
+          <% when "Low"%>
+            <% synthese_affluence = "Faible" %>
+            <% background_affluence = 'bg-low-affluence'%>
+          <% when "Below average"%>
+            <% synthese_affluence = "En dessous de la moyenne" %>
+            <% background_affluence = 'bg-below-average-affluence' %>
+          <% when "Average"%>
+            <% synthese_affluence = "Moyenne" %>
+            <% background_affluence = 'bg-average-affluence' %>
+          <% else %>
+            <% background_affluence = 'bg-no-affluence-data' %>
+            <% synthese_affluence = "Données indisponibles" %>
+          <% end %>
         <% else %>
-          <% background_affluence = 'bg-no-affluence-data' %>
-        <% end %>
-      <% end %>
-      <% else %>
           <% synthese_affluence = "Données indisponibles" %>
-          <% background_affluence = 'bg-no-affluence-data' %>
-    <% end %>
+        <% end %>
+      <% else %>
+        <% synthese_affluence = "Données indisponibles" %>
+        <% background_affluence = 'bg-no-affluence-data' %>
+      <% end %>
 
     <div data-controller="modal favorite" class="controller">
       <div class=" pt-0 mt-5 card-custom px-0" data-index-filters-target="card" data-modal-target="card"></a>
@@ -107,8 +114,6 @@
       </div>
 
 
-
-
       <%# Modal %>
       <div id="myModal" class="modal" data-modal-target="modal" >
         <!-- Modal content -->
@@ -150,10 +155,11 @@
 
             <hr class="w-100 py-0 my-0 line-break-modal">
 
+
             <div class="<%=background_affluence%>">
               <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left">
                 <div class= "px-3 py-3 border-custom bg-creme mx-3 my-4 d-inline-block">
-                  <p class="headers-secondary modal-info-primary mb-2" >Affluence de <%=@hour%>h à <%= @hour + 1 %>h:</p>
+                  <p class="headers-secondary modal-info-primary mb-2" >Affluence de ce jour (<%=@hour%>h à <%= @hour + 1 %>h) :p>
                   <div class="d-flex align-items-center gap-3">
                     <p class="modal-info-content mb-0 line-height-card"><em><%=synthese_affluence%></em></p>
                     <% affluence_icons_pattern = case background_affluence %>
@@ -175,6 +181,49 @@
             </div>
 
             <hr class="w-100 py-0 my-0 line-break-modal">
+
+          <%# SUGGESTION D'AFFLUENCE DEBUT %>
+          <% if synthese_affluence != "Données indisponibles" %>
+            <% index = %>
+            <hr class="w-100 py-0 my-0 line-break-modal">
+            <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
+
+              <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
+              <%# <p class="ps-3 modal-info-content"> %>
+                <% array_intensity = affluences_data_day["analysis"] %>
+                  <% if affluences_data_intensity == "Low"  %>
+                    <%index = array_intensity.find_index do |element| %>
+                      <%element["hour"] >  @hour && (element["intensity_txt"] == "Low") %>
+                    <% end %>
+                  <% elsif  affluences_data_intensity == "Below average" || affluences_data_intensity == "Average" %>
+                    <% index = array_intensity.find_index do |element| %>
+                      <%element["hour"] >  @hour && (element["intensity_txt"] == "Low" || element["intensity_txt"] == "Below average") %>
+                    <% end %>
+                  <% end %>
+                  <% affluence_plus_faible_txt = array_intensity[index.to_i]["intensity_txt"] %>
+                  <% affluence_plus_faible_heure = array_intensity[index.to_i]["hour"] %>
+              <%# </p> %>
+
+              <p class="headers-secondary modal-info-primary ps-3 mb-0">Suggestion de créneau:
+                  <p class="ps-3 modal-info-content mb-0">
+
+                    <% if affluence_plus_faible_txt == "Low"%>
+                      <%affluence_plus_faible_txt = "faible"%>
+                      <% elsif affluence_plus_faible_txt == "Below average" %>
+                      <%affluence_plus_faible_txt = "en dessous de la moyenne"%>
+                      <% elsif affluence_plus_faible_txt == "Average" %>
+                      <%affluence_plus_faible_txt = "moyenne"%>
+                    <% end %>
+                    <%affluence_plus_faible_txt%>
+                  <%=affluence_plus_faible_heure%>h à <%=affluence_plus_faible_heure + 1%>h : L'affluence sera <em><%=affluence_plus_faible_txt %></em></p>
+              </p>
+
+            </div>
+
+            <hr class="w-100 py-0 my-0 line-break-modal">
+          <% end %>
+
+          <%# SUGGESTION D'AFFLUENCE FIN %>
 
             <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
               <p class="ps-3 modal-content-text chapeau-modal" id=<%= id.to_s %>><%= event.chapeau %></p>
