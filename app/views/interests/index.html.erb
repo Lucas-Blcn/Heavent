@@ -9,34 +9,12 @@
 </div>
 
 
-<div class="container">
-  <div class="row">
+<div class="container mb-5 pb-3">
+  <div class="row mb-5">
   <% if @events.count == 0 %>
     <p>Vous n'avez pas encore ajouté d'Heavent culturels à vos favoris.</p>
   <% end %>
-    <% @events.each do |event| %>
-      <div class="col-6 col-md-6 card-wrapper">
-        <div class="card mb-3 border" style="max-width: 540px;">
-          <div class="row" data-controller="unfavorite">
-            <div class="favorite">
-              <i class="fa-solid fa-heart favorited" data-unfavorite-target="hearts" data-action="click->unfavorite#deleteFavorite" data-event-id="<%=event.id%>"></i>
-            </div>
-              <%= link_to event_path(event.id), class:"text-decoration-none" do %>
-                <div class="col-12 col-md-4">
-                  <img src="<%=event.url_image%>" alt="" style="width: 100%; height: 150px; object-fit: cover;" class="border-image">
-                </div>
-              <% end %>
-                <div class="col-12 col-md-8">
-                  <div class="card-body">
-                    <h1 class="card-title" style="height: 50px; overflow: hidden;"><%= event.title %></h1>
-                    <h2 class="card-text"><i class="fa-regular fa-calendar"></i> <%= event.start_date.strftime('%d/%m') %> - <%= event.end_date.strftime('%d/%m') %></h2>
-                    <h3 class="card-text"><%= event.type_of_price %></h3>
-                  </div>
-                </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <%= render "favorite_list", events: @events %>
   </div>
 
 </div>

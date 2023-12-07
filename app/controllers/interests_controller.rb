@@ -1,9 +1,14 @@
 class InterestsController < ApplicationController
   before_action :authenticate_user!
 
+  DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
   def index
     @interests = current_user.interests.where(liked: true)
     @events = @interests.map(&:event)
+
+    @today = DAYS.index(Date.today.strftime("%a"))
+    @hour = Time.now.hour
   end
 
   def favorite
