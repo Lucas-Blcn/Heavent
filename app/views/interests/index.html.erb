@@ -1,10 +1,10 @@
 <div class="container">
   <% if @events.count == 0 %>
-    <h1>Les Heavent culturel dans votre coeur</h1>
+    <h1 class="headers-primary bigger-size-font text-center index-h1 border-none">Vos favoris</h1>
     <% elsif @events.count == 1 %>
-      <h1>L'Heavent culturel dans votre coeur</h1>
+      <h1 class="headers-primary bigger-size-font text-center index-h1 border-none">Vos favoris</h1>
     <% else %>
-      <h1>Les <%=@events.count%> Heavent culturel dans votre coeur</h1>
+      <h1 class="headers-primary bigger-size-font text-center index-h1 border-none">Vos <%=@events.count%> favoris</h1>
   <% end %>
 </div>
 
