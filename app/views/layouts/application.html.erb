@@ -29,12 +29,28 @@
   <body>
 
     <% unless action_name == "landing" %>
-      <div class="bottom-bar">
-        <%= link_to events_path do %>
-          <%= image_tag "logo.svg", class: "logo-bottom-bar"%>
-        <% end %>
+      <div class="bottom-bar container d-flex justify-content-between align-items-center">
+        <!-- Logo  -->
+        <div>
+          <%= link_to events_path do %>
+            <%= image_tag "logo.svg", class: "logo-bottom-bar" %>
+          <% end %>
+        </div>
+
+        <div>
+          <% if current_page?(new_user_session_path) %>
+            <%= link_to new_user_session_path do %>
+              <%= image_tag "icons/user-active.svg", class: "navbar-icon" %>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path do %>
+              <%= image_tag "icons/user-inactive.svg", class: "navbar-icon" %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     <% end %>
+
 
     <%= render "shared/flashes" %>
     <%# <p class="notice"><%= notice</p> %>
