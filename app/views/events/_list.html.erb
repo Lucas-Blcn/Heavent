@@ -2,7 +2,7 @@
 <% if @empty %>
   <h1>Pas de résultats pour votre recherche. Voici nos suggestions:</h1>
 <% else %>
-  <h1 class="headers-primary bigger-size-font text-center main-h1 border-none my-0">Événements maintenant</h1>
+  <h1 class="headers-primary bigger-size-font text-center main-h1 border-none my-0">Événements du moment</h1>
 <% end %>
 
 <% id = 0 %>
@@ -89,7 +89,6 @@
       <div id="myModal" class="modal" data-modal-target="modal" >
         <!-- Modal content -->
         <div class="modal-content mb-5" data-modal-target="modalContent" >
-
           <div class="modal-header p-0">
 
             <%= image_tag "btns/close-modal.svg", height: 30, width: 30, alt: "marker liked", data: { action: "click->modal#close", modal_target: "modal" }, class: "close" %>
