@@ -1,10 +1,11 @@
 <%= simple_form_for :filter, url: events_path, method: :get, data: { index_filters_target: "form" } do |f| %>
-  <div class="filter-form mb-3">
+  <div class="filter-form mb-3 pt-0">
 
 
     <%= f.input :tags,
       as: :check_boxes,
       collection: Event.all.pluck(:tags).flatten.uniq,
+      label: "Catégories",
       input_html: { class: "tag-selector", data: { action: "click->index-filters#toggle", index_filters_target: "input" } },
                   item_wrapper_class: 'tag-item'
     %>
