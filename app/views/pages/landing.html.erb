@@ -8,6 +8,14 @@
   <div data-controller="typing" data-typing-text-value="All events, at the last minute, only for you." class="typing-text">
     <p data-typing-target="text"></p>
   </div>
+ <div class="btn-black mt-4 mb-3" style="justify-content: center; align-items: center;">
+    <%= link_to events_path, style: "text-decoration: none; color: $creme;" do %>
+      VOIR LES ÉVÉNEMENTS
+      <%= image_tag "btns/arrow.svg", height: 24, width: 24 %>
+    <% end %>
+  </div>
 </div>
 
-<meta HTTP-EQUIV="REFRESH" content="6; url=/events">
+
+
+<% <meta HTTP-EQUIV="REFRESH" content="6; url=/events"> %>
