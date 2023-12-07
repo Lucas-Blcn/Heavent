@@ -2,12 +2,7 @@
   width: 100%;
   overflow: hidden;
   padding-top: 30px;
-  border-bottom: 2px solid $black;
-
-  legend {
-    padding-right: 20px;
-    font-size: inherit;
-  }
+  border-bottom: 1px solid $black;
 
   abbr {
     display: none;
@@ -19,6 +14,10 @@
   }
 }
 
+.filter {
+  padding-left: 0;
+  padding-right: 0;
+}
 
 .filter_tags {
   display: flex;
@@ -26,17 +25,38 @@
   overflow-x: scroll;
   margin-bottom: 0;
   color: $creme;
+  border-bottom: 1px solid $black;
+  padding-right: 10px;
 
   &::-webkit-scrollbar {
     display: none;
   }
+
+  .tag-item:first-of-type {
+    margin-left: 150px;
+  }
+
+  .tag-item {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 }
 
 .filter_tags legend {
+  position: absolute;
+  width: fit-content;
+  padding: 20px 20px !important;
+  margin-right: 8px;
+  text-transform: uppercase;
+  font-size: inherit;
+
   background-color: $black;
-  padding-left:20px;
-  padding-right: 20px;
-  padding-top: 0;
+  color: $creme;
+  font-weight: 500;
+
+  // background-color: $creme;
+  // color: $black;
+  // border-right: 1px solid $black
 }
 
 .tag-item {
@@ -72,11 +92,11 @@
   border: 1px solid $black;
 }
 
-.simple_form filter{
+.simple_form filter {
   padding-left: 0px !important;
 }
 
-.tag-selector{
+.tag-selector {
   background-color: $black;
   color: $creme;
 }
