@@ -150,26 +150,29 @@
             </div>
 
             <hr class="w-100 py-0 my-0 line-break-modal">
-            <div >
-            <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
-              <p class="headers-secondary modal-info-primary ps-3 mb-0" >Affluence de <%=@hour%>h à <%= @hour + 1 %>h:
-                  <p class="ps-3 modal-info-content mb-0"><em><%=synthese_affluence%></em></p>
-              </p>
 
-              <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
-              <p class="ps-3 modal-info-content">
-                <% affluence_icons_pattern = case background_affluence %>
-                <% when 'bg-low-affluence' %>
-                  <%= image_tag "icons-affluence/low-affluence-circle.svg" %>
-                <% when 'bg-below-average-affluence' %>
-                  <%= image_tag "icons-affluence/below-average-affluence-circle.svg"%>
-                <% when 'bg-average-affluence' %>
-                  <%= image_tag "icons-affluence/average-affluence-circle"%>
-                <% else %>
-                  <%# <p class="ps-3 modal-info-content"><em>L'affluence n'est pas disponible pour cet événement</em></p> %>
-                <% end %>
+            <div class="<%=background_affluence%>">
+              <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left">
+                <div class= "px-3 py-2 border-custom bg-creme mx-3 my-4 d-inline-block">
+                  <p class="headers-secondary modal-info-primary mb-0 d-inline" >Affluence de <%=@hour%>h à <%= @hour + 1 %>h:
+                    <p class="modal-info-content mb-0"><em><%=synthese_affluence%></em></p>
+                  </p>
 
-              </p>
+                  <% affluence_icons_pattern = case background_affluence %>
+                  <% when 'bg-low-affluence' %>
+                    <p class="modal-info-content"><%= image_tag "icons-affluence/low-affluence-circle.svg" %></p>
+                  <% when 'bg-below-average-affluence' %>
+                    <p class="modal-info-content"><%= image_tag "icons-affluence/below-average-affluence-circle.svg"%></p>
+                  <% when 'bg-average-affluence' %>
+                    <p class="modal-info-content"><%= image_tag "icons-affluence/average-affluence-circle"%></p>
+                  <% else %>
+                    <%# <p class="ps-3 modal-info-content"><em>L'affluence n'est pas disponible pour cet événement</em></p> %>
+                  <% end %>
+                </div>
+
+                <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
+
+              </div>
             </div>
 
             <hr class="w-100 py-0 my-0 line-break-modal">
