@@ -20,7 +20,9 @@ class EventsController < ApplicationController
   end
 
   def show
+    @events = Event.all
     @event = Event.find(params[:id])
+    @hour = Time.now.hour
   end
 
   private

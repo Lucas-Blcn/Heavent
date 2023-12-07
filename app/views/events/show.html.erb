@@ -1,32 +1,86 @@
-<div class="container">
-    <div class="title">
-      <div class="arrow_dahlia arrow_dahlia_left">
-        <%= link_to "<", events_path, class: "text-decoration-none",style:"color:#201E1E" %>
+
+    <% background_affluence = %>
+    <% synthese_affluence = "" %>
+
+    <div class="modal-header p-0">
+      <div class="d-flex gap-3 align-items-center pe-2 pb-4 pt-2 border-left justify-content-between w-100">
+        <h2 class="mb-0 w-100 line-height-headers big-size-font"><%= @event.title %></h2>
+          <div class="favorite ml-auto <%= 'favorited' if user_signed_in? && current_user.interests.find_by(event: @event).present? %>" data-favorite-target="heart" data-action="click->favorite#toggleFavorite" data-event-id="<%= @event.id %>" >
+          <% if user_signed_in? && current_user.interests.find_by(event: @event).present? %>
+            <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" }, class: 'd-none' %>
+            <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" } %>
+          <% else %>
+            <%= image_tag "btns/heart-inactive.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartInactive" } %>
+            <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { favorite_target: "heartActive" }, class: 'd-none' %>
+          <% end %>
+        </div>
       </div>
-      <h1 class="title_dahlia"><%= @event.title %></h1>
-    </div>
-  </div>
-
-  <div class="wrapper-container">
-    <div class="wrapper-image" style="background-image: url(<%= @event.url_image.present? ? @event.url_image : "https://www.ville-castres.fr/sites/default/files/thumbnails/image/internet_1100x600_actu_2.jpg" %>)"></div>
-  </div>
-
-  <div class="container">
-    <div class="chapeau">
-      <p class="mb-0"><%= @event.chapeau %></p>
-      <div class="toggle arrow_dahlia arrow_dahlia_down"onclick="toggleDescription()"> < </div>
-      <div class="description p-0"><%= @event.description.html_safe %></div>
     </div>
 
-  </div>
+    <div class="modal-body p-0">
+      <img src="<%= @event.url_image %>" alt=<%= @event.title %> class="border-left border-top-custom border-bottom-custom modal-image">
 
-  <script>
-    function toggleDescription() {
-      const description = document.querySelector('.description');
-      const toggleButton = document.querySelector('.toggle');
+      <div class="infos d-flex gap-3 pt-3 border-left justify-content-between">
 
-      description.classList.toggle('show');
+        <div class="ps-3">
+          <p class="card-text modal-info-primary" style="font-size:20px" ><%= @event.place_name %></p>
+          <p class="card-text" style="font-size:20px"><em><%= @event.formatted_zip_code %></em></p>
+          <p class="card-text card-price" style="font-size:20px"><em><%= @event.type_of_price %></em></p>
+        </div>
 
-      toggleButton.classList.toggle('arrow_dahlia_up');
-    }
-  </script>
+        <div class="modal-tags d-flex flex-column align-items-end">
+          <% @event.tags.each do |tag| %>
+            <p class="tags flex-shrink-1 text-end"><%= tag %></p>
+          <% end %>
+        </div>
+
+      </div>
+
+<%# Affluence %>
+      <hr class="w-100 py-0 my-0 line-break-modal">
+
+        <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
+          <p class="headers-secondary modal-info-primary ps-3 mb-0" >Affluence de <%= @hour %>h à <%= @hour + 1 %>h:
+            <p class="ps-3 modal-info-content mb-0"><em><%#= synthese_affluence %></em></p>
+          </p>
+
+          <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
+          <p class="ps-3 modal-info-content">
+            <% affluence_icons_pattern = case background_affluence %>
+            <% when 'bg-low-affluence' %>
+              <%= image_tag "icons-affluence/low-affluence-circle.svg" %>
+            <% when 'bg-below-average-affluence' %>
+              <%= image_tag "icons-affluence/below-average-affluence-circle.svg"%>
+            <% when 'bg-average-affluence' %>
+              <%= image_tag "icons-affluence/average-affluence-circle"%>
+            <% else %>
+              <%# <p class="ps-3 modal-info-content"><em>L'affluence n'est pas disponible pour cet événement</em></p> %>
+            <% end %>
+          </p>
+        </div>
+
+      <hr class="w-100 py-0 my-0 line-break-modal">
+
+<%# Description %>
+      <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
+        <div class="description-modal modal-content-text ps-3" ><%= @event.description.html_safe %></div>
+      </div>
+    </div>
+
+
+<%# Bouton de redirection %>
+    <div class="modal-footer d-flex justify-content-center py-3 border-left flex-column px-0">
+      <% if @event.url_link.present? %>
+      <div class="pb-0 mb-3 d-flex gap-2 border-bottom-custom">
+        <div>
+          <a href=<%= @event.url_link %> target="_blank" >Allez sur leur site</a>
+        </div>
+        <div>
+          <%= image_tag "btns/arrow-black.svg" %>
+        </div>
+      </div>
+      <% end %>
+      <%# <hr class="w-25 py-0 my-0 line-break-modal mb-3"> %>
+    </div>
+  <%# </div> %>
+<%# </div> %>
