@@ -11,6 +11,6 @@ export default class extends Controller {
     const response = await fetch(`/interests/${eventId}/favorite`);
     const data = await response.json();
     //  Retirer la couleur du coeur
-    evt.target.closest('.card-wrapper').remove();
+    evt.target.closest('.controller').remove();
   };
 }

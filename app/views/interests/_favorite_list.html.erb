@@ -1,0 +1,97 @@
+<% id = 0 %>
+
+<div class="list-group" >
+  <% @events.each do |event| %>
+    <% id += 1 %>
+
+    <% background_affluence = 'bg-no-affluence-data' %>
+    <% synthese_affluence = "Données indisponibles" %> <%# SERA Faible, En dessous de la moyenne, moyenne%>
+    <% affluences_data_day = %>
+    <% affluences_data_intensity = "" %> <%#  SERA Low ou Below average ou Average ou ""%>
+    <% array_intensity = %>
+
+    <% if !event.affluence.nil? %>
+      <% @hour %>
+      <% affluences_data_day = JSON.parse(event.affluence.days[@today]) %>
+      <% if !affluences_data_day["analysis"].find { |entry| entry['hour'] == @hour }.nil? %>
+        <% affluences_data_hour = affluences_data_day["analysis"].find { |entry| entry['hour'] == @hour } %>
+        <% affluences_data_intensity = affluences_data_hour["intensity_txt"] %>
+          <% intensity_txt = case affluences_data_intensity %>
+          <% when "Low"%>
+            <% synthese_affluence = "Faible" %>
+            <% background_affluence = 'bg-low-affluence'%>
+          <% when "Below average"%>
+            <% synthese_affluence = "En dessous de la moyenne" %>
+            <% background_affluence = 'bg-below-average-affluence' %>
+          <% when "Average"%>
+            <% synthese_affluence = "Moyenne" %>
+            <% background_affluence = 'bg-average-affluence' %>
+          <% else %>
+            <% background_affluence = 'bg-no-affluence-data' %>
+            <% synthese_affluence = "Données indisponibles" %>
+          <% end %>
+        <% else %>
+          <% synthese_affluence = "Données indisponibles" %>
+        <% end %>
+      <% else %>
+        <% synthese_affluence = "Données indisponibles" %>
+        <% background_affluence = 'bg-no-affluence-data' %>
+      <% end %>
+
+    <div data-controller="unfavorite" class="controller">
+      <div class=" pt-0 mt-5 card-custom px-0" data-index-filters-target="card"></a>
+        <div class="margin-right-custom">
+          <div class="px-0 margin-left-custom">
+            <img src="<%= event.url_image %>" alt="" class="main-image-card border-top-custom border-right-custom border-left">
+          </div>
+          <div class="px-0">
+            <div class="">
+              <div class="d-flex justify-content-between align-items-center gap-3 py-3 pe-3 margin-left-custom border-left border-right-custom">
+
+                <h2 class="mb-0 w-100 line-height-headers text-start headers-secondary"><%= event.title %></h2>
+                <div class="favorite ml-auto <%= 'favorited' if user_signed_in? && current_user.interests.find_by(event: event).present? %>" data-action="click->unfavorite#deleteFavorite" data-event-id="<%= event.id %>" >
+                  <%= image_tag "btns/heart-active.svg", height: 30, width: 30, alt: "like button", data: { unfavorite_target: "hearts" } %>
+                </div>
+              </div>
+
+              <hr class="py-0 my-0 line-break-modal">
+
+              <div class="<%=background_affluence%>">
+                <div class="d-flex align-items-center margin-left-custom border-left border-right-custom pt-3 gap-3">
+                  <p class="headers-secondary modal-info-primary ms-3 border-custom px-3 py-2 bg-creme" >Affluence</p>
+                  <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
+                  <p class="ps-3 modal-info-content">
+                    <% affluence_icons_pattern = case background_affluence %>
+                    <% when 'bg-low-affluence' %>
+                      <%= image_tag "icons-affluence/low-affluence-circle.svg" %>
+                    <% when 'bg-below-average-affluence' %>
+                      <%= image_tag "icons-affluence/below-average-affluence-circle.svg"%>
+                    <% when 'bg-average-affluence' %>
+                      <%= image_tag "icons-affluence/average-affluence-circle"%>
+                    <% else %>
+                      <p class="ps-3 line-height-card" style="font-size: 20px;">Données indisponibles</p>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+
+              <hr class="py-0 my-0 line-break-modal">
+
+              <div class="margin-left-custom px-3 pt-3 border-left border-right-custom">
+                <p class="card-text" style="font-size:20px"><%= event.place_name %>, <%= event.formatted_zip_code %></p>
+                <div class="d-flex justify-content-center">
+                  <%= link_to event_path(event), class: "btn-black mt-4 mb-3 text-decoration-none" do %>
+                    En voir plus<%= image_tag "btns/arrow.svg", height: 24, width: 24 %>
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  <% end %>
+</div>
