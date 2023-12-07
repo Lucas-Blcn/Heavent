@@ -8,20 +8,15 @@
   <div data-controller="typing" data-typing-text-value="All events, at the last minute, only for you." class="typing-text">
     <p data-typing-target="text"></p>
   </div>
-  <div class="btn-landing "style="justify-content: center; align-items: center;">
-    <%= link_to "VOIR LES ÉVÉNEMENTS", events_path %>
+ <div class="btn-black mt-4 mb-3" style="justify-content: center; align-items: center;">
+    <%= link_to events_path, style: "text-decoration: none; color: $creme;" do %>
+      VOIR LES ÉVÉNEMENTS
+      <%= image_tag "btns/arrow.svg", height: 24, width: 24 %>
+    <% end %>
   </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var eventsButton = document.getElementById("events-button");
-
-    eventsButton.addEventListener("click", function() {
-      eventsButton.style.backgroundColor = "$black";
-    });
-  });
-</script>
 
 
-<meta HTTP-EQUIV="REFRESH" content="6; url=/events">
+
+<%# <meta HTTP-EQUIV="REFRESH" content="6; url=/events"> %>

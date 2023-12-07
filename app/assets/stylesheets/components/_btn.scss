@@ -11,19 +11,6 @@
   border-radius: 30px;
 }
 
-.btn-landing{
-  justify-content: center;
-  background-color: $creme;
-  color: $black;
-  padding: 8px 32px;
-  border: 2px solid $black;
-  text-decoration: none !important;
-  text-transform: uppercase;
-  font-weight: 400;
-  border-radius: 30px;
-}
-
-.btn-landing-clicked{
-  background-color: $black;
+.btn-black a:visited {
   color: $creme;
 }
