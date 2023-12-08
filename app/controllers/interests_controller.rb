@@ -8,7 +8,7 @@ class InterestsController < ApplicationController
     @events = @interests.map(&:event)
 
     @today = DAYS.index(Date.today.strftime("%a"))
-    @hour = Time.now.hour
+    @hour = 12
   end
 
   def favorite
