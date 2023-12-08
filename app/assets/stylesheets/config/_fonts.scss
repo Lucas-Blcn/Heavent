@@ -67,6 +67,9 @@ $headers-font: "Dahlia Medium Condensed", "Helvetica", "sans-serif";
   font-size: 72px;
 }
 
+.biggest-size-font {
+  font-size: 90px;
+}
 .main-h1 {
   line-height: 3.6rem;
 }
@@ -79,4 +82,8 @@ $headers-font: "Dahlia Medium Condensed", "Helvetica", "sans-serif";
 
 .weight-500 {
   font-weight: 500;
+}
+
+.weight-600 {
+  font-weight: 600;
 }
