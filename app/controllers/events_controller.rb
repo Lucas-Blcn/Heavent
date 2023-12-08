@@ -23,7 +23,8 @@ class EventsController < ApplicationController
   def show
     @events = Event.all
     @event = Event.find(params[:id])
-    @hour = Time.now.hour
+    @hour = 12
+    @today = DAYS.index(Date.today.strftime("%a"))
   end
 
   private
