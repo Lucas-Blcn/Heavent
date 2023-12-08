@@ -33,7 +33,7 @@
     <% synthese_affluence = "Données indisponibles" %>
     <% background_affluence = 'bg-no-affluence-data' %>
   <% end %>
-
+<div data-controller="favorite">
 <div class="modal-header p-0 mt-4">
   <div class="d-flex gap-3 align-items-center pe-2 pb-4 pt-2 border-left justify-content-between w-100">
     <h2 class="mb-0 w-100 line-height-headers big-size-font"><%= @event.title %></h2>
@@ -141,7 +141,7 @@
   <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left pt-3">
     <p class="ps-3 modal-content-text chapeau-modal" id=<%= id.to_s %>><%= @event.chapeau %></p>
 
-    <div class="description-modal modal-content-text ps-3" data-modal-target="description" ><%= @event.description.html_safe %></div>
+    <div class="description-modal modal-content-text ps-3"><%= @event.description.html_safe %></div>
   </div>
 </div>
 
@@ -158,7 +158,6 @@
     </div>
   </div>
   <% end %>
-  <%# <hr class="w-25 py-0 my-0 line-break-modal mb-3"> %>
 </div>
-<%# </div> %>
-<%# </div> %>
+
+</div>

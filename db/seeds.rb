@@ -18,7 +18,7 @@ url = URI.parse("https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/que
 url.query = URI.encode_www_form(
   select: 'title, url, lead_text, description, date_start, date_end, date_description, cover_url, tags, address_name, address_street, lat_lon, price_type, price_detail, address_zipcode, access_link',
   where: "date_start <= \"#{today_date}\"AND date_end >\"#{today_date}\"",
-  limit: 25,
+  limit: 6,
   refine: ['address_city:"Paris"', 'tags:"Peinture"', 'tags:"Art contemporain"', 'tags:"Théâtre"', 'tags:"Expo"', 'tags:"Spectacle musical"', 'tags:"Cinéma"', 'price_type:"payant"', 'price_type:"gratuit"']
 )
 # Récupérer la réponse
