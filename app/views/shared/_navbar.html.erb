@@ -5,7 +5,7 @@
   <%# </div> %>
 
   <%# PERMET DE REDIRIGER VERS LOG_IN %>
-  <% is_user_page = current_page?(new_user_session_path) %>
+  <% is_user_page = current_page?(events_path) %>
 
   <%= link_to events_path do %>
     <% if is_user_page %>
