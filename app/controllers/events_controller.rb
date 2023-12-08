@@ -8,7 +8,8 @@ class EventsController < ApplicationController
     @events = @events.where(type_of_price: "gratuit") if params[:free] == "true"
 
     @today = DAYS.index(Date.today.strftime("%a"))
-    @hour = Time.now.hour
+    # @hour = Time.now.hour
+    @hour = 12
 
     @events = filter if params[:query] && params[:query] != ""
     @empty = true if params[:free] == "true" && @events == []
