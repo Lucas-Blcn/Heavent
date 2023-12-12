@@ -72,21 +72,21 @@
               <hr class="py-0 my-0 line-break-modal">
 
               <div class="<%=background_affluence%>">
-                <div class="d-flex align-items-center margin-left-custom border-left border-right-custom pt-3 gap-3">
-                  <p class="headers-secondary modal-info-primary ms-3 border-custom px-3 py-2 bg-creme" >Affluence</p>
+                <div class="d-flex align-items-center margin-left-custom border-left border-right-custom gap-3 overflow-hidden">
+                  <p class="headers-secondary modal-info-primary ms-3 border-custom px-3 py-2 bg-creme my-3" >Affluence</p>
                   <%# <p class="ps-3 modal-info-content"><em>affluence data ici</em></p> %>
-                  <p class="ps-3 modal-info-content">
+                  <div class="modal-info-content pe-3">
                     <% affluence_icons_pattern = case background_affluence %>
                     <% when 'bg-low-affluence' %>
-                      <%= image_tag "icons-affluence/low-affluence-circle.svg" %>
+                      <%= image_tag "icons-affluence/low-affluence-circle.svg", class: 'affluence-icons' %>
                     <% when 'bg-below-average-affluence' %>
-                      <%= image_tag "icons-affluence/below-average-affluence-circle.svg"%>
+                      <%= image_tag "icons-affluence/below-average-affluence-circle.svg", class: 'affluence-icons' %>
                     <% when 'bg-average-affluence' %>
-                      <%= image_tag "icons-affluence/average-affluence-circle"%>
+                      <%= image_tag "icons-affluence/average-affluence-circle", class: 'affluence-icons' %>
                     <% else %>
-                      <p class="ps-3 line-height-card" style="font-size: 20px;">Données indisponibles</p>
+                      <p class="line-height-card mb-0" style="font-size: 18px;">Données indisponibles</p>
                     <% end %>
-                  </p>
+                  </div>
                 </div>
               </div>
 
@@ -160,17 +160,17 @@
 
             <div class="<%=background_affluence%>">
               <div class="d-flex flex-column flex-grow-1 margin-modal-left border-left">
-                <div class= "px-3 py-3 border-custom bg-creme mx-3 my-4 d-inline-block">
+                <div class= "px-3 py-3 border-custom bg-creme mx-3 my-4 d-inline-block position-relative">
                   <p class="headers-secondary modal-info-primary mb-2" >Affluence de ce jour <br><%=@hour%>h - <%= @hour + 1 %>h :</p>
-                  <div class="d-flex align-items-center gap-3">
+                  <div class="d-flex align-items-center gap-3 overflow-hidden flex-sm-nowrap flex-wrap">
                     <p class="modal-info-content mb-0 line-height-card"><em><%=synthese_affluence%></em></p>
                     <% affluence_icons_pattern = case background_affluence %>
                     <% when 'bg-low-affluence' %>
-                      <p class="modal-info-content mb-0"><%= image_tag "icons-affluence/low-affluence-circle.svg" %></p>
+                      <%= image_tag "icons-affluence/low-affluence-circle.svg", class: 'affluence-icons'  %>
                     <% when 'bg-below-average-affluence' %>
-                      <p class="modal-info-content mb-0"><%= image_tag "icons-affluence/below-average-affluence-circle.svg"%></p>
+                      <%= image_tag "icons-affluence/below-average-affluence-circle.svg", class: 'affluence-icons' %>
                     <% when 'bg-average-affluence' %>
-                      <p class="modal-info-content mb-0"><%= image_tag "icons-affluence/average-affluence-circle"%></p>
+                      <%= image_tag "icons-affluence/average-affluence-circle", class: 'affluence-icons' %>
                     <% else %>
                       <%# <p class="ps-3 modal-info-content"><em>L'affluence n'est pas disponible pour cet événement</em></p> %>
                     <% end %>
